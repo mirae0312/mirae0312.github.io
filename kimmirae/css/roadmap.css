@@ -1,0 +1,137 @@
+@font-face {
+    src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2")
+    format("woff2");
+    font-family: "Meta";
+    font-style: normal;
+    font-weight: normal;
+} 
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 0;
+    color: #856fc7;
+    background-image: url('../imagages/main.png');
+    background-color: #856fc7;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+.nav_btn {
+    font-size: 36px;
+    color: var(--logo-color);
+}
+.nav_login {
+    font-size: 36px;
+}
+.nav_login:hover {
+    color: red;
+}
+
+.title {
+    font-family: "Meta";
+    text-align: center;
+    padding: 0;
+    font-size: 30px;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+}
+
+.img1 {
+    font-family: 'Sunflower', sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    min-width: 230px;
+    max-width: 350px;
+    width: 100%;
+    color: #141414;
+    text-align: left;
+    line-height: 1.4em;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.35em ease;
+}
+
+.img1 img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.img1 figcaption {
+    position: absolute;
+    top: calc(79%);
+    width: 87%;
+    background-color: #9fa7ffe8;
+    padding: 15px 25px 65px;
+    color: #fff;
+}
+.img1 figcaption:before {
+    position: absolute;
+    content: '';
+    z-index: 2;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-image: linear-gradient(to bottom, transparent 0%, #9fa7ffe8 100%);
+                        /* 그라데이션 (밑에서부터)*/
+}
+
+.img1 h3 {
+    font-family: 'Sunflower', sans-serif;
+    font-weight: 300;
+    font-size: 1.4em;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+
+.img1 p {
+    margin: 0 0 10px;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.img1 a {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+.img1:hover figcaption {
+    top: 90px
+}
+
+.mapImg img{
+    width: 1900px;
+    height: 1000px;
+    margin: auto;
+    display: none;
+}
+
+.mapBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 30px;
+    padding-bottom: 40px;
+}

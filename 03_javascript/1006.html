@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1006</title>
+</head>
+<body>
+    <h1>눈코딩</h1>
+    <script>
+        //1
+        let z = 50;
+        (() => {
+            let z = 55; // 지역변수
+            z += 45;
+            console.log(`z = ${z}`);
+        })(); // IIPE          
+        console.log(`z = ${z}`);   
+        // 예상 : z = 100 z = 100
+        // 결과 : z = 100 z = 50 // 함수밖이라 z = 50값적용
+        
+        //2
+        let y = 99;
+        (() => {
+            let x = 100;//지역변수
+            let y = 9; //지역변수
+            z = 1; //전역변수
+            console.log(`x + y + z = ${x + y + z}`); //100+9+1
+        })();
+        console.log(`y + z = ${y + z}`); //99+1
+        // console.log(`x + y + z = ${x + y + z}`); // x가 IIPP안 지역변수라 없음
+        // 예상 : x + y + z = 110
+        //       y + z = 10
+        //       x + y + z = 110
+        // 결과 : x + y + z = 110
+        //       y + z = 100
+        //       x + y + z = Uncaught ReferenceError // 함수밖이라 z값이 없음 
+
+        //3
+        //전역 for문의 var로 선언된 내부변수 i
+        for (var i = 1; i <= 10; i++) { //전역변수
+            console.log(i); // 1~10까지 출력
+        }
+        (() => {
+            console.log(`i = ${i}`);
+        })();
+        // 예상 : i = 1
+        // 결과 : 1~10, 
+        //       i = 11 
+        // i가 for문에서 var(전역변수)라서 10까지 증가하고 11이되서 탈출. let이였다면 에러
+        
+        //4 closure
+        function foo(){
+            const num = 100;
+            return () => {
+                console.log(`num = ${num}`);
+            }
+        }
+        const num = 200;
+        const too = foo();
+        too();
+        // 예상 : 100
+        // 결과 : num = 100 // foo안의 num값 입력됨.
+        
+        </script>
+</body>
+</html>

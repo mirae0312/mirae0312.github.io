@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery</title>
+    <!-- 1. server computer에서 jquery.js를 제공 -->
+    <!-- <script src="js/jquery-3.6.0.js"></script> -->
+    <!-- 2. CDN Content Delivery Network으로 부터 제공 -->
+    <script 
+        src="https://code.jquery.com/jquery-3.6.0.js" 
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
+        crossorigin="anonymous"></script>
+    <script>
+    /**
+     * jquery onload 1
+     * $ === jQuery
+     */
+    $(document).ready(function(){
+        console.log("jquery load complete1");
+    });
+
+    /**
+     * jquery onload 2
+     */
+    $(function(){
+        console.log("jquery load complete2");
+    })
+    console.log($, typeof $);
+    console.log($(document), typeof $(document));
+    </script>
+</head>
+<body>
+    <h1>jquery</h1>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+</head>
+<body>
+    <!-- 
+        form : 사용자정보를받아서 서버로 정보를 제출하는 역할 
+            로그인, SNS등 - form id="~~"등 사용자가 입력해야하는 값 
+    -->
+    <h1>form</h1>
+    <form action="" method="GET" name="loginFrm">
+        <!-- 
+            action 폼이 제출될 서버측 주소. 비어있다면 현재창의 url로 제출
+            method 전송방식 
+                GET(기본값) : 사용자 입력값이 url에 노출
+                POST : 사용자 입력값이 url에 노출되지 않음
+            제출 form안의 submit버튼을 클릭하면 제출됨.
+            input태그의 name속성값을 key로, 사용자입력값을 value로 직렬화(한줄로 &로 연결, id&Pw&~&)해서 서버로 전송.
+            전송된 form보는법 : 펑션+F12 -> network -> All -> 빈창에 커맨드+R -> Headers 맨밑 Form Data
+        -->
+        <table>
+            <tr>
+                <th>
+                    <!-- 아이디 form : label for="userId"를 입력해 id="userId"와 연결 -->
+                    <label for="userId">아이디</label>
+                </th>
+                <td>
+                    <!-- input에서 name은 제출할 이름, 보통은 name = id와 동일 -->
+                    <input type="text" name="userId" id="userId">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <!-- 비밀번호 form : for="userPw를 입력해 id="userPw"와 연결-->
+                    <label for="userPw">비밀번호</label>
+                </th>
+                <td>
+                    <!-- password는 input:password 자동 입력 -->
+                    <input type="password" name="userPw" id="userPw">
+                </td>
+            </tr>
+            <tr>
+                <!-- 
+                    로그인버튼 만들기
+                    submit으로 서버로 전송 
+                -->
+                <th colspan="2">
+                    <input type="submit" value="로그인">
+                </th>
+            </tr>
+        </table>
+    </form>
+
+    <h2>사용자입력처리 태그</h2>
+    <form action="">
+        <fieldset>
+            <!-- 
+                filedset : 영역나누기용, form안에서 여러 input태그를 그룹핑 
+                legend filedset에 대한 title
+            -->
+            <legend>text관련 input태그</legend>
+            <!-- input[type=text] -->
+            <!-- input:text 위아래 다른표현법으로 같은용도 -->
+            <!-- placeholder : 입력전에 출력되있는 내용. 내용입력시 사라짐 -->
+            <!-- maxlength : 최대 입력 문자수 -->
+            <!-- value : 기본값. 미리입력된값 수정가능. -->
+            <input 
+                type="text" 
+                name="username" 
+                id="username" 
+                maxlength="10"
+                value="honggd"
+                placeholder="아이디를 입력하세요.">
+            <br>
+            <input type="password" name="password" id="password">
+            <br>
+            <!-- input:search : 검색하는태그 초기화버튼이 있음(X버튼누르면 입력한내용이 사라짐) -->
+            <input type="search" name="query" id="query" placeholder="검색어를 입력하세요.">
+            <br>
+            <!-- input:eail : 이메일태그 입력시 유효성 검사를 해줌(@가없거나 com같은게 없으면 빨간밑줄)-->
+            <input type="email" name="email" id="email">
+            <br>
+            <!-- input:url : url태그 입력시 유효성 검사해줌(빨간밑줄)-->
+            <input type="url" name="homepage" id="homepage" placeholder="http://">
+            <br>
+            <!-- input:tel : 전화번호태그 모바일에서 입력시 쿼티키보드가 팝업 유용! -->
+            <input type="tel" name="tel" id="tel" placeholder="전화번호를 입력하세요.">
+            <br>
+            <!-- textarea : 메모. 유일한 여러줄 작성가능한 태그. 초기문구작성시 시작종료중간 >< 에 출력하고싶은 문구를 개행없이 작성 -->
+            <textarea name="memo" id="memo" cols="30" rows="10" placeholder="메모를 작성하세요.">안녕
+반가워
+개행이 그대로 보여지네
+            </textarea>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>nuber관련 input태그</legend>
+            <!-- 
+                input:number : 숫자만입력가능. 스핌박스생성(숫자증가감소)
+                    min - 최소값
+                    max - 최대값
+                    step - 스핌박스버튼 누를때 증감소하는 값 
+            -->
+            <input type="number" name="count" id="count" min="0" max="10" step="2">
+            <br>
+            <!-- 
+                input:range : 슬라이더를 이동해서 값변경.
+                자바스크립트가 없어서 값 확인불가능
+                onchange="console.log(this.value);"는 자바스크립트로 콘솔에가면 찍히는 값 확인가능
+            -->
+            <input type="range" name="score" id="score" min="0" max="100" step="5" onchange="console.log(this.value);">
+            
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>날짜시간관련 input태그</legend>
+            <!-- input:date : 날짜선택태그. 캘린더에서 선택. 직접입력가능 value:초기값세팅 -->
+            <input type="date" name="birthday" id="birthday" value="1990-09-09">
+            <br>
+            <!-- input:time : 시간선택태그. 오전오후시분입력 전송할때는 알아서 변경해서 전송 -->
+            <input type="time" name="daliverty-time" id="daliverty-time" value="23:30">
+            <br>
+
+            <!-- input:datetime-local : date + time 태그. 2021-09-07T03%3A05 -->
+            <!-- ISO-8601 표기법(24시로표기)으로 초기값 설정. 2021-09-07T(타임)03(%3A)05. %3A은 ':' -->
+            <input type="datetime-local" name="sometime" id="sometime" value="2021-09-07T03:05">
+
+        </fieldset>
+
+        <fieldset>
+            <legend>선택관련 select태그</legend>
+            <!-- select태그는 하나만 선택이 기본값 -->
+            <!-- multiple 추가시 여러개선택가능(범위선택)-->
+            <select name="menu" id="menu" multiple>
+                <option value="순대국">순대국</option>
+                <option value="김치찌개">김치찌개</option>
+                <option value="순두부찌게">순두부찌게</option>
+                <option value="된장찌게">된장찌게</option>
+            </select>
+            <br>
+            <!-- 
+                datalist
+                 드랍다운을 추가 목록에 없다면 직접입력
+                 예) 이메일같은 예시창 없다면 직접입력 
+            -->
+            <input type="text" name="browser" list="browser-list">
+            <datalist id="browser-list">
+                <option value="ie">Internet Explorer</option>
+                <option value="chrome">Google Chrome</option>
+                <option value="safari">Apple Safari</option>
+        </fieldset>
+
+        <fieldset>
+            <legend>선택관련 radio/checkbox</legend>
+            <!-- 택일해야 하는경우 -->
+            <!-- 
+                선택을 안하면 아예 전송을 안함, 
+                체크를 하면 체크된 네임값 + on으로 표시되어 전송 
+                value값 작성시 on -> value값으로 변경되어 전송
+            -->
+            <p>
+                성별 : 
+                    <!-- name속성값이 같아 같은매뉴에 출력 -->
+                    <input type="radio" name="gender" id="gender-male" value="남">
+                    <label for="gender-male">남</label>
+                    <input type="radio" name="gender" id="gender-female" value="여">
+                    <label for="gender-female">여</label>
+            </p>
+            <!-- 여러건을 선택해야하는 경우-->
+            <p>
+                SNS : 
+                    <input type="checkbox" name="sns" id="sns-facebook" value="facebook">
+                    <label for="sns-facebook">Facebook</label>
+                    <input type="checkbox" name="sns" id="sns-twitter" value="twitter">
+                    <label for="sns-twitter">Twitter</label>
+                    <input type="checkbox" name="sns" id="sns-instegram" value="instegram">
+                    <label for="sns-instegram">Instergram</label>
+            </p>
+            <p>
+                <!-- 값이 큰 의미가없을때는 value속성을 넣지않아도됨 -->
+                <label for="wannaEmail">email 수신여부</label>
+                <input type="checkbox" name="wannaEmail" id="wannaEmail">
+            </p>
+        </fieldset>
+
+        <!-- 
+            input태그가 있어도 전송되지않는 경우 2가지
+                1. disabled : 값이 있어도 전송되지않음
+                    ex)비밀번호를 2번쳐서 확인할때. 2번째 비밀번호 
+                2. name값을 쓰지않았을경우
+        -->
+        <fieldset>
+            <!-- 기타 input 태그 -->
+            <legend>기타 input태그</legend>
+
+            <!-- input:color RGB코드를 고르면 HEX넘버로 변환해서 제출, value값 초기세팅가능 -->
+            <!-- disabled 값이 있어도 전송되지않음 -->
+            <input type="color" name="color" id="color" value="#16e98e" disabled>
+            <br>
+
+            <!-- input:file 내 컴퓨터에서 파일을 전송-->
+            <input type="file" name="upfile" id="upfile">
+            <br>
+
+            <!-- input:hidden 시각화되진않지만 무조건 전송해주는 값 -->
+            <input type="hidden" name="abc" value="1234567890">
+        </fieldset>
+
+        <br>
+        <input type="submit" value="제출">
+        <!-- input:reset 초기화값으로 되돌려줌(값을 삭제하는것이 아님) -->
+        <input type="reset" value="초기화">
+        <input type="button">확인</button>
+
+        <!-- 
+            input:button == button[type=button] // type을 작성하지않으면 기본 sudmit(제출)로 설정
+            input:submit == button[type=submit] // submit은 type작성안해도됨
+            input:reset == button[type=reset]
+        -->
+    </form>
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

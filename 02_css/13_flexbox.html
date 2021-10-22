@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flexbox</title>
+</head>
+<body>
+    <h1>flexbox</h1>
+    <!-- 
+        부모요소 flex-container
+            - display: flex 선언
+            - flex-direction: row(가로) | column(세로)
+            - juctify-content(메인축) row | column  flex-start | center | space-between | space-around | space-evenly
+            - align-itmes(보조축) column | row      stretch | baseline | center | flex-start | flex-end
+
+            - flex-wrap(줄바꿈) nowrap | wrap
+            - align-content(보조축/여러줄) stretch | baseline | center | flex-start | flex-end
+        자식요소 flex-item
+     -->
+     <ul class="flex">
+         <li>1</li>
+         <li>2</li>
+         <li>3</li>
+         <li>4</li>
+         <li>5</li>
+         <li>6</li>
+         <li>7</li>
+         <li>8</li>
+         <li>9</li>
+         <li>10</li>
+     </ul>
+     <style>
+     ul.flex {
+         padding-left: 0;
+         list-style: none;
+         border: 2px solid rebeccapurple;
+         height: 80vh;
+         display: flex;
+         flex-wrap: nowrap;
+     }
+     ul.flex li {
+        width: 100px;
+        height: 100px;
+        background-color: steelblue;
+        margin: 8px;
+     }
+     </style>
+
+
+
+</body>
+</html>

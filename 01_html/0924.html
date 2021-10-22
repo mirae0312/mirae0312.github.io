@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0924</title>
+</head>
+<body>
+    <form action="">
+        <fieldset>
+            <legend>납품자 정보</legend>
+            <!-- ol>li 순서O -->
+            <ol>
+                <li>
+                    <!-- required :  boolean속성으로 제출전 필수입력해야하는 속성 -->
+                    <label for="userName">납품자명(필수) : </label>
+                    <input type="text" name="userName" id="userName" required>
+                </li>
+                <br>
+                <li>
+                    <label for="email">email(필수) : </label>
+                    <input type="email" name="email" id="email" required placeholder="answer@naver.com">
+                </li>
+                <br>
+                <li>
+                    <label for="homepage">홈페이지 : </label>
+                    <input type="url" name="homepage" id="homepage" value="http://">
+                </li>
+                <br>
+                <li>
+                    <!-- name 제출할 이름, id 연결할 이름 -->
+                    <label for="area">지역 : </label>
+                    <select name="area" id="area">
+                        <!-- value 서버로전송할때 유니코드값으로 전송, 한글로 써도 됨 -->
+                        <option value="Busan">부산</option>
+                        <option value="인천">인천</option>
+                        <option value="서울">서울</option>
+                        <option value="제주">제주</option>
+                    </select>
+                </li>
+            </ol>
+            
+        </fieldset>
+
+        <fieldset>
+            <legend>납품 정보</legend>
+            <!-- ul>li 순서X -->
+            <ul>
+                <li>
+                    <label for="productName">상품명(필수) : </label>
+                    <input type="text" name="productName" id="productName" required>
+                </li>
+                <br>
+                <li>
+                    <label for="count">납품수량(필수) : </label>
+                    <input type="number" name="count" id="count" required min="100" placeholder="최소 100">
+                </li>
+                <br>
+                <li>
+                    <label for="grade">납품등급(필수) : </label>
+                    <input type="range" name="grade" id="grade" min="1" max="3" step="1">
+                </li>
+                <br>
+                <li>
+                    <label for="etc">기타사항 : </label>
+                    <textarea name="etc" id="etc" cols="20" rows="2"></textarea>
+                </li>
+            </ul>
+        </fieldset>
+        <br>
+        <input type="submit" value="send message">
+    </form>
+</body>
+</html>

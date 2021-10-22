@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>box model</title>
+</head>
+<body>
+    <h1>box model</h1>
+    <!-- 
+        body에서 8px을 미리 차지하고있음
+
+        content - padding - border - margin
+        padding : content와 border 사이의 여백
+    -->
+    <div class="box">
+        안녕
+    </div>
+    <style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: orangered;
+        margin: 30px auto;
+        border: 5px solid #000;
+        /* 시계방향으로 적용, 같은값은 생략가능, 안썼다면 맡은편 수를 가져옴 top right bottom left */
+        padding: 5px;
+    }
+    </style>
+
+
+</body>
+</html>

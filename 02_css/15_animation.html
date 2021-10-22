@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation</title>
+</head>
+<body>
+    <h1>animation</h1>
+    <!-- 
+        @keyframes 여러 상태를 설정
+        animation-name : 선택자에서 @keyframes 지정
+        animation-duration
+        animation-delay
+        animation-timing-funtion
+
+        animation-direction 실행방향
+        animation-iteration-count 반복횟수
+        anumation-till-mode 애니매이션 시작전후 상태
+     -->
+    <div class="box"></div>
+
+    <div class="container">
+        <img src="../sample/image/hyunta.jpg" alt="">
+    </div>
+    <style>
+    .container {
+        width: 200px;
+        height: 200px;
+        border: 3px solid gray;
+        overflow: hidden;
+        animation-name: box-animation;
+        animation-duration: 5s;
+        /* alternate-reverse 위치부터 방향을 반대로 적용 */
+        animation-direction: alternate-reverse;
+        animation-iteration-count: 2;
+        animation-delay: .5s;
+        /* animation-fill-mode: forwards 마지막에 멈춘방향그대로 정지 */
+        animation-fill-mode: forwards;
+    }
+    .container img {
+        width: 100%;
+        transition-duration: .3s;
+    }
+    .container img:hover {
+        transform: scale(1.3, 1.3);
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: indigo;
+        border: 1px solid skyblue;
+    }
+    .box {
+        animation-name: box-animation;
+        animation-duration: 5s;
+        /* alternate 되돌아옴 */
+        animation-direction: alternate;
+        /* animation-iteration-count 반복횟수 | infinit(무한) */
+        animation-iteration-count: infinite;
+    }
+
+
+    @keyframes box-animation {
+        25% {
+            transform: translate(300px, 0) rotate(180deg);
+        }
+        50% {
+            transform: translate(300px, 300px) rotate(360deg);
+        }
+        75% {
+            transform: translate(600px, 300px) rotate(180deg);
+        }
+        100% {
+            transform: translate(600px, 0px) rotate(0deg);
+            background-color: hotpink;
+        }
+    }
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position</title>
+</head>
+<body>
+    <h1>position</h1>
+    <!-- 
+        position:static(dafault) - document에 정의된 순서대로 위에서 아래, 좌에서 우로 배치. offset무시.
+        position:relative - document에 정의된 순서대로 위에서 아래, 좌에서 우로 배치. offset적용.
+        position:absolute - 가장 가까운 static이 아닌 부모요소(position:relative) 기준으로 offset 적용.
+        position:fixed - viewport기준 offset 적용
+     -->
+    <h2>static</h2>
+    <!-- .outer>.first+.second+.third -->
+    <div class="outer">
+        <div class="first"></div>
+        <div class="second"></div>
+        <div class="third"></div>
+    </div>
+    <h2>relative</h2>
+    <div class="outer">
+        <div class="first"></div>
+        <div class="second position-relative"></div>
+        <div class="third position-relative"></div>
+    </div>
+
+    <h2 style="margin-top: 100px;">absolute</h2>
+    <div class="outer position-relative">
+        <div class="first"></div>
+        <div class="second position-absolute"></div>
+        <div class="third position-absolute"></div>
+    </div>
+
+    <h2>fixed</h2>
+    <div class="fourth position-fixed"></div>
+
+    <style>
+        .position-fixed {
+            position: fixed;
+        }
+        .position-absolute {
+            position: absolute;
+        }
+        .position-relative {
+            position: relative;
+        }
+        .outer {
+            background-color: lightgray;
+            border: 2px solid #000;
+        }
+        .first {
+            width: 300px;
+            height: 300px;
+            background-color:thistle;
+        }
+        .second {
+            width: 200px;
+            height: 200px;
+            background-color: violet;
+            /* static은 적용안됨 */
+            top: 50px;
+            left: 50px;
+        }
+        .third {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            top: 100px;
+            left: 100px;
+        }
+        .fourth {
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+            bottom: 30px;
+            right: 30px;
+        }
+    </style>
+
+    <h1>z-index</h1>
+    <div class="wrapper position-relative">
+        <div class="z-box z-test1"></div>
+        <div class="z-box z-test2"></div>
+        <div class="z-box z-test3"></div>
+    </div>
+    <style>
+    .z-box {
+        width: 150px;
+        height: 150px;
+        border: 1px solid #000;
+        position: absolute;
+    }
+    /* position:static에서는 작동하지 않는다. */
+    /* z-index가 동일하면 문서상 선언이 늦은 요소가 앞으로온다. */
+    /*z-index가 높을수록 앞으로감*/
+    .z-test1{background-color: red; z-index: 3;} 
+    .z-test2{background-color: green; top: 20px; left: 20px; z-index: 2;}
+    .z-test3{background-color: yellow; top: 40px; left: 40px; z-index: 1;}
+    </style>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

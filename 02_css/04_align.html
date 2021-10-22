@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>align</title>
+</head>
+<body>
+    <h1>align</h1>
+    <!-- align : 정렬 -->
+    <h2>inline요소/text 정렬</h2>
+    <div class="container">
+        <h2>Align me!</h2>
+        <span>안녕</span>
+        <br>
+        <img src="../sample/image/hyunta.jpg" alt="현타견" style="width: 100px;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id possimus quae, officiis nisi tenetur veniam magnam totam dicta non exercitationem? Fuga tempora voluptatibus quibusdam animi aut porro similique voluptates dolores!</p>
+    </div>
+
+    <style>
+    /* 
+        block요소의 inline자식요소를 text-align속성으로 정렬할 수 있다.
+        block요소의 text를 text-align속성을 정렬할 수 있다.
+     */
+    .container {
+        width: 500px;
+        border: 2px solid #000;
+        /* text-align(정렬): right | center | left */
+        text-align: center; 
+    }
+    .container h2 {
+        text-align: left;
+    }
+    .container span {
+        background-color: orangered;
+        color: #fff;
+    }
+    </style>
+
+    <h2>block요소의 정렬</h2>
+    <div class="box">
+        <span>Hello</span>
+    </div>
+    <style>
+    .box {
+        width: 200px;
+        height: 200px;
+        background-color: lightsalmon;
+        border: 2px solid #000;
+        margin: auto; /* margin left, right값을 동일하게 자동으로 계산 */
+        /* text-align: center; */
+        display: flex;
+        justify-content: center; /* 수평정렬 */
+        align-items: center; /* 수직정렬 */
+    }
+    </style>
+
+
+
+
+
+
+
+
+</body>
+</html>

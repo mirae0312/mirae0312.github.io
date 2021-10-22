@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text</title>
+</head>
+<body>
+    <h1>text</h1>
+    <div class="wrapper">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, minima labore. Praesentium similique pariatur dolores sunt aliquam aspernatur quis dolorum cumque voluptate minus? Nulla cumque suscipit enim possimus aperiam explicabo!</p>
+        <p>Impedit fuga quos praesentium repudiandae ratione voluptatibus adipisci id recusandae iure. Incidunt dolorem ad ab quam? Labore distinctio earum laudantium, repudiandae recusandae saepe! Cum molestiae earum pariatur qui reiciendis rerum.</p>
+        <p>Eligendi ipsum in similique fuga ut repudiandae sint quod incidunt. Facere odit ipsam debitis eius libero similique possimus sunt! Voluptatibus, veniam perspiciatis? Non dolores nisi exercitationem voluptas reprehenderit atque dicta.</p>
+    </div>
+    <style>
+    .wrapper p:first-child {
+        /* 여러개쓰면 마지막것 출력 */
+        color: blueviolet;
+        color: #fab; /*ffaabb 반복되는 숫자 줄여쓰기 가능*/
+        color: rgb(255, 100, 200);
+        /* color투명표 주기 %나 a로 표현 */
+        color: rgb(255, 100, 200 / 61%);
+        color: rgba(255, 100, 200, .6);
+    }
+    /* hover(커서올림)했을때 */
+    .wrapper p:first-child:hover {
+        color: rgba(47, 36, 41, 1);
+    }
+
+    /* 2번째자식한테 밑줄 */
+    .wrapper p:nth-child(2){
+        text-decoration: underline;
+    }
+
+    /* 
+    text-shadow : 그림자 
+        좌표값 입력해야함
+        x offset
+        y offset
+        color
+    */
+    .wrapper p:nth-child(3){
+        text-shadow: 3px 3px 7px gray;
+    }
+    </style>
+    <img src="../sample/image/01_실습문제-textshadow.png" alt="">
+    <!-- div#bg>span#text-shadow$.shadow{HTML5}*4 -->
+    <div id="bg">
+        <span id="text-shadow1" class="shadow">HTML5</span><br>
+        <span id="text-shadow2" class="shadow">HTML5</span><br>
+        <span id="text-shadow3" class="shadow">HTML5</span><br>
+        <span id="text-shadow4" class="shadow">HTML5</span><br>
+    </div>
+    <style>
+        div#bg {
+            background-color: #000;
+            margin: 30px;
+            padding: 50px;
+        }
+        .shadow {
+            font-size: 100px;
+            line-height: 100px;
+            font-weight: bold;
+            color: white;
+        }
+        #text-shadow1 {
+            color: orangered;
+            text-shadow: 5px 5px 0px orange;
+        }
+        #text-shadow2 {
+            text-shadow: 0px 1px 20px #fff;
+        }
+        #text-shadow3 {
+            text-shadow: 1px 1px 20px #6f0;
+        }
+        #text-shadow4 {
+            color: #000;
+            text-shadow: 0px 0px 4px #ccc,
+                         0px -5px 4px #ff3,
+                         2px -10px 6px #fd3,
+                         -2px -15px 11px #f80,
+                         2px -19px 18px #f20
+        }
+    </style>
+
+
+
+
+
+</body>
+</html>

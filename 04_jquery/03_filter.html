@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filter</title>
+    <script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
+    <h1>filter</h1>
+    <div class="wrapper">
+        <p id="p1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores facilis blanditiis quis in perspiciatis vitae officiis quod! Distinctio architecto, ratione inventore tempora consectetur quae reiciendis obcaecati debitis optio, sequi unde.</p>
+        <p id="p2">Sequi rerum, saepe provident voluptatem fugit facere cum quaerat deleniti impedit pariatur corporis laboriosam, corrupti enim error? Voluptatibus eveniet at aliquam recusandae, delectus alias magni? Repellendus delectus ducimus alias quos?</p>
+        <p id="p3">Enim eaque corrupti maiores, molestias numquam aspernatur voluptatibus obcaecati, iure esse laboriosam, ad magni amet recusandae excepturi modi quam ea eos natus nobis aut veniam similique facere. Minima, ut aliquid?</p>
+        <p id="p4">Tenetur, assumenda. Nulla omnis, nam vero facere perferendis accusantium vel laudantium, laborum assumenda eligendi ullam ipsum labore nihil harum excepturi optio eos libero necessitatibus? At numquam rerum veritatis atque deserunt.</p>
+        <p id="p5">Itaque enim necessitatibus tempora quidem perspiciatis molestias quia soluta minus non. Sunt sit totam qui hic doloribus quibusdam minus esse eum itaque excepturi, ducimus eveniet recusandae, sint, explicabo repudiandae numquam!</p>
+    </div>
+    <script>
+    const $plist = $(".wrapper p");
+    console.log($plist);
+
+    // jquery메소드의 반환값이 jquery객체이므르 method chaining이 가느아다
+    // $plist
+        // .css("text-decoration", "underline") //전부 밑줄 
+        // .filter(":even")//홀수번 만 #p1 p3 p5
+        // .css("color", "hotpink")
+        // .filter(":last") //마지막 만 #p
+        // .css("font-size", "2em")
+        // .end() // 한단계 뒤로 넘어감 #p1 p3 p5
+        // .css("background-color", "lightgray");
+
+    $plist.first().css("color", "red");   
+    $plist.last().css("color", "green");   
+    $plist.eq(2).css("color", "violet");   
+    $plist.not("#p1").css("text-decoration", "line-through");   
+
+    // $plist[2].css("color", "navy"); error
+    console.log($plist[2]); //js object
+    console.log($plist.eq(2)[0]); //js object
+    console.log($plist.get(2)); //js object
+    console.log($plist.get()); //[p#p1, p#p2, p#p3, p#p4, p#p5]
+
+
+    </script>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery api</title>
+    <script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
+    <h1>jquery api</h1>
+    <h2>each | $.each</h2>
+    <button id="btn1">each</button>
+    <button id="btn2">$.each</button>
+    <button id="btn3">@실습문제</button>
+    <div class="wrap"></div>
+    <script>
+    /**
+     * 주어진 데이터를 .wrap 하위에 a태그로 만들어 추가하세요.
+     */
+    $(btn3).click((e) => {
+        const arr = [
+		    {name : "네이년", link : "http://www.naver.com"},
+		    {name : "구글", link : "http://www.google.com"},
+		    {name : "w3c", link : "http://www.w3c.com"},
+		    {name : "w3school", link : "http://www.w3schools.com"}
+		];
+        const $wrap = $(".wrap");
+        // $wrap.html("");
+        $wrap.empty(); // 자식요소를 모두 제거하는 메소드
+
+        // $(arr).each((i, obj) => {});
+        $.each(arr, (i, {name, link}) => {
+            console.log(i, name, link);
+            // const $a = $(`<a href='${link}'>${name}</a>`);
+            const $a = $("<a></a>");
+            $a.attr("href", link);
+            $a.text(name);
+            $wrap.append($a, " ");
+        });
+    });
+
+    /**
+     * $.each(arr | obj, callback)
+     */
+    $(btn2).on('click', (e) => {
+        // 배열순회
+        const arr = ['홍길동', '신사임당', '장보고'];
+        $.each(arr, (i, name) => {
+            console.log(i, name);
+        });
+
+        //객체 순회
+        const obj = {
+            id : "honggd",
+            name : "홍길동",
+            age : 30,
+            married : true
+        };
+
+        $.each(obj, (k, v) => {
+            console.log(k,v);
+        });
+    });
+
+    /**
+     * $(selector | arr).each(callback)
+     */
+    $(btn1).on('click', (e) => {
+        const arr = ['a', 'b', 'c'];
+        // console.log($(arr));
+        $(arr).each((i, ch) => {
+            console.log(i, ch);
+        });
+    });
+    </script>
+
+    <h2>extend</h2>
+    <button id="btn4">$.extend 사용자객체</button>
+    <button id="btn5">$.extend</button>
+    <button id="btn6">$.fn.extend</button>
+    <p id="kkk">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis magnam assumenda harum quo voluptas. Cum est accusamus aliquam delectus quo vitae adipisci laborum quos voluptatum officiis nisi maiores, reiciendis sunt!</p>
+    <script>
+    /**
+     * $.fn.extend(obj)
+     *  - $.fn에 obj속성추가
+     *  - $(selector).foo 사용가능
+     *  - return this를 통해 method chaining 가능
+     */
+    $(btn6).click(() => {
+        $.fn.extend({
+            colorize: function(color){
+                console.log(this, color);
+                // this -> $(selector)
+                this.css("color", color);
+                return this; //method chaining을 위해 다시 리턴
+            },
+            bgColorize: function(color){
+                return this.css("background-color", color);
+            }
+        });
+
+        $("#kkk")
+            // 연달아 호출가능
+            .colorize("tomato")
+            .bgColorize("pink")
+    });
+
+    /**
+     * $.extend(obj)
+     *  - jq객체에 obj속성을 추가
+     *  - 속성/메소드를 추가해서 $.foo 형태로 사용가능
+     */
+    $(btn5).click(() => {
+        $.extend({
+            foo: function(elem, color){
+                console.log(elem, color);
+                // console.log(this); // $(jq)객체
+
+                // 사용자가 입력한 값으로 색을 바꿔주세요
+                $(elem).css("color", color);
+            }
+        });
+
+        $.foo(kkk, "hotpink");
+        $.foo($(kkk), "hotpink"); // 둘다가능
+    });
+
+    /**
+     * $.extend(target, obj1, ...)
+     *  - target객체에 obj1객체의 속성을 추가
+     *  - 속성명이 동일한 경우 overwrite처리
+     */
+    $(btn4).click(() => {
+        const user = {
+            id : "honggd",
+            name : "홍길동",
+            gender : "남"
+        };
+
+        const obj = {
+            id: "honggd",
+            email: "honggd@naver.com",
+            sns: ["instegram", "tiktok"]
+        };
+
+        $.extend(user, obj);
+
+        console.log(user);
+        console.log(obj);
+
+    });
+    </script>
+
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

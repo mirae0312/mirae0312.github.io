@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+</head>
+<body>
+    <h1>list</h1>
+    <!-- 내용기준 navigation역할이라면 nav semantic tag로 감싼다. -->
+    <nav>
+        <!-- ul.menu>(li[id]>a)*5 -->
+        <ul class="menu">
+            <li id="home"><a href="#">Home</a></li>
+            <li id="html"><a href="#">HTML5</a></li>
+            <li id="css"><a href="#">CSS3</a></li>
+            <li id="javascript6"><a href="#">Javascript6</a></li>
+            <li id="jquery"><a href="#">jQuery</a></li>
+        </ul>  
+    </nav>
+    <style>
+    ul.menu {
+        /* vw(viewport width) */
+        width: 80vw;
+        padding: 0px;
+        margin: auto;
+    }
+    ul.menu li {
+        /* list-style: none - 스타일적용안함 */
+        list-style: none;
+        float: left;
+        text-align: center;
+        background-color: #7e212c;
+        border-right: 1px #818181 solid;
+        box-shadow: 1px 1px 15px #fed5d9;
+    }
+    ul.menu li a {
+        width: 100px;
+        display: block;
+        padding: .8em .5em;
+        text-decoration: none;
+        color: #ccd3d9;
+    }
+    ul.menu li:hover {
+        background-color: #ead6bd;
+    }
+    ul.menu li:hover a {
+        background-color: #fed5d9;
+        color: #321e17;
+    }
+    ul.menu > li:first-child {
+        border-top-left-radius: .5em;
+        border-bottom-left-radius: .5em;
+    }
+    ul.menu > li:last-child {
+        border-top-right-radius: .5em;
+        border-bottom-right-radius: .5em;
+        border: 0;
+    }
+    </style>
+
+    
+
+
+
+
+
+
+
+</body>
+</html>

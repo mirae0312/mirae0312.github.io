@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web storage</title>
+    <script src="js/jquery-3.6.0.js"></script>
+    <script>
+    if(localStorage || sessionStorage){
+        console.log("웹스토리지를 사용할수 있습니다.");
+    }
+    else {
+        console.log("웹스토리지를 사용이 불가능한 브라우져입니다.");
+    }
+    </script>
+</head>
+<body onload="displayGuestbook();">
+    <h1>web storage</h1>
+    <fieldset>
+        <legend>Local Storage</legend>
+        <input type="text" id="key" placeholder="key">
+        <input type="text" id="value" placeholder="value">
+        <hr>
+        <button id="btn1">저장</button>
+        <button id="btn2">조회</button>
+        <button id="btn3">삭제</button>
+        <button id="btn4" onclick="localStorage.clear();">전제삭제</button>
+    </fieldset>
+    <script>
+    const $key = $(key);
+    const $value = $(value);
+
+    /**
+     * 전체삭제
+     * onclick="localStorage.clear();
+     */
+
+    /**
+     * 삭제
+     * removeItem()
+     */
+    $(btn3).click(() => {
+        localStorage.removeItem($key.val());
+    });
+
+    /**
+     * 조회
+     * getItem()
+     * - key를 통해 value를 조회
+     * - key 존재하지 않는 경우 null 리턴
+     */
+    $(btn2).click(() => {
+        const v = localStorage.getItem($key.val());
+        console.log(v);
+
+        if(v)
+            $value.val(v);
+        else {
+            alert("해당 요소는 존재하지 않습니다.");
+            $key.val('');
+            $value.val('');
+        }    
+    });
+    
+    /**
+     * 저장
+     * setItem()
+     * 같은 key값으로 value를 저장하면 나중에 쓴값이 덮어씌워짐
+     */
+    $(btn1).click(() => {
+        if($key.val() == '' || $value.val() == '')
+            return;
+        // localStorage객체저장 둘다 동일
+        // 1. setter 메소드
+        // localStorage.setItem($key.val(), $value.val());
+
+        // 2. bracket notation
+        localStorage[$key.val()] = $value.val();
+
+        // 초기화
+        $key.val('');
+        $value.val('');
+    });
+    </script>
+    
+    <h2>객체저장</h2>
+    <button id="btn5">객체저장</button>
+    <script>
+    /**
+     * json
+     *  - javascript object nataion 자바스크립트 객체 표기법
+     *  - 데이터교환 포맷언어, 이종(다른프로그램)간의 데이터 통신에 주로 사용
+     *  - js, java, c/c++. python .....
+     */  
+
+    $(btn5).click(() => {
+        const arr = [1,2,3,4,5];
+        localStorage.setItem("arr", JSON.stringify(arr)); 
+
+        const obj = {
+            width: 30,
+            height: 50,
+            color: ['red', 'green', 'blue', 'pink'],
+            user: {
+                id: "honggd",
+                age: 30,
+                job: ['개발자', '농부', '강태공']
+            }
+        };
+        localStorage.setItem("obj", JSON.stringify(obj));
+
+        const _arr = localStorage.getItem("arr");
+        const _obj = localStorage.getItem("obj");
+
+        console.log(_arr, typeof _arr);
+        console.log(_obj, typeof _obj);
+
+        // JSON -> js객체로 바꾸기
+        console.log(JSON.parse(_arr));
+        console.log(JSON.parse(_obj));
+    
+    });
+    </script>
+
+    <h2>방명록</h2>
+    <form action="javascript:saveGusetbook();" name="guestbookFrm">
+        <fieldset>
+            <table>
+                <tr>
+                    <th><label for="username">이름</label></th>
+                    <td>
+                        <input type="text" name="username" id="username">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="content">내용</label></th>
+                    <td><input type="text" name="content" id="content"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button>저장</button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+    <table id="tb-guestbook">
+        <thead>
+            <tr>
+                <th>순번</th>
+                <th>이름</th>
+                <th>내용</th>
+                <th>작성일시</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <style>
+    #tb-guestbook {
+        border: 1px solid #000;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    #tb-guestbook th, #tb-guestbook td {
+        border: 1px solid #000;
+        padding: 5px;
+    }
+    </style>
+    <script>
+    /**
+     * @실습문제:
+     * (최신순)
+     * 
+     * 순번  이름    내용     작성일시
+     * ----------------------------------
+     * 1    홍길동   안녕    2021/10/19 17:50
+     * 2    홍길순   잘가    2021/10/19 16:50
+     */
+    const displayGuestbook = () => {
+        // 방명록 tbody
+        // guestbooks가져오기
+        const guestbooks = JSON.parse(localStorage.getItem("guestbooks"));
+        guestbooks.reverse(); // reverse() 배열뒤집기
+        console.log(guestbooks);
+
+        // tboby가져와서 객체만들기
+        const $tbody = $("#tb-guestbook tbody");
+
+        //초기화 (안하면 계속 복붙)
+        $tbody.empty(); // empty(): 요소지움(내용만 삭제 태그는 남아있음.)
+
+        $.each(guestbooks, (i, {username, content, datetime}) => {
+            $tbody.append(`<tr>
+    <td>${i + 1}</td>
+    <td>${username}</td>
+    <td>${content}</td>
+    <td>${formatDatetime(datetime)}</td>
+</tr>`);
+        });
+
+    };
+
+    const formatDatetime = (millis) => {
+        // millis초 날짜시간 바꾸기
+        const d = new Date(millis);
+        const f = (n) => n >= 10 ? n : "0" + n;
+        return `${d.getFullYear()}/${f(d.getMonth() + 1)}/${f(d.getDate())} ${f(d.getHours())}:${f(d.getMinutes())}`;
+    }
+
+    //사용자 입력값을 저장하는 객체
+    const saveGusetbook = () => {
+        const $username = $(username);
+        const $content = $(content);
+
+        // 사용자입력값이 없을때 실행되지 않게함
+        if($username.val() == "" || $content.val() == "")
+            return;
+
+        // 1. 사용자입력값을 Guestbook객체 생성
+        const gb = new Gusetbook($username.val(), $content.val());
+
+        // 2. localStorage에 추가 : 배열로 관리
+        // gusetbooks를 검색하고 없으면 빈배열을 반환
+        const guestbooks = JSON.parse(localStorage.getItem("guestbooks")) || [];
+        guestbooks.push(gb);
+
+        console.log(guestbooks);
+
+        localStorage.setItem("guestbooks", JSON.stringify(guestbooks));
+
+        // 3. 초기화
+        $username.val('');
+        $content.val('');
+
+        // 방명록 목록보기
+        displayGuestbook();
+
+    };
+
+    class Gusetbook {
+        constructor(username, content){
+            this.username = username;
+            this.content = content;
+            this.datetime = Date.now(); // unix time 밀리초
+        }
+    }
+    </script>
+
+</body>
+</html>

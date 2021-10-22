@@ -1,0 +1,127 @@
+:root {
+    --text-color: #fff;
+    --logo-color: skyblue;
+}
+
+@font-face {
+    src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2")
+      format("woff2");
+    font-family: "Meta";
+    font-style: normal;
+    font-weight: normal;
+  }
+
+body {
+    background-image: url('../imagages/main.png');
+    background-color: #ece4e2;
+    font-family: "Meta";
+    font-style: normal;
+    font-weight: normal;
+}
+.nav {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+.nav_login {
+    font-size: 36px;
+}
+
+.nav_login:hover {
+    color: red;
+}
+
+.nav_btn {
+    font-size: 36px;
+    color: var(--logo-color);
+}
+
+.titleCat {
+    transition: all 0.5s; /* 전체움직임 0.5초 */
+    -webkit-text-stroke: 4px #d6f4f4; /* font 테두리 */
+    font-variation-settings: "wght" 900, "ital" 1; /* font 변경 */
+    font-size: 15rem;
+    text-align: center;
+    color: transparent; /* 투명 */
+    font-family: "Meta", sans-serif;
+    text-shadow: 10px 10px 0px #fff94b,
+      15px 15px 0px #e601c0,
+      20px 20px 0px #e9019a,
+      25px 25px 0px #f40468,
+      45px 45px 10px #482896;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* background-color: #8357eb; */
+    width: 95vw;
+    height: 750px;
+}
+  
+.titleCat:hover {
+    font-variation-settings: "wght" 100, "ital" 0;
+    text-shadow: none;
+}
+
+.cats {
+    transition: all 0.5s;
+    /* background-color: tan; */
+    margin: auto;
+    width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 120px;
+}
+
+.cats img {
+    border: 2px solid #d6f4f4;
+    transition: all 0.5s;
+    list-style: none;
+    border-radius: 50px;
+    width: 300px;
+    height: 300px;
+    padding: 10px; 
+ }   
+
+.cats img:hover {
+    box-shadow: 
+    15px 15px 0px #e601c0, 
+    20px 20px 0px #e9019a, 
+    25px 25px 0px #f40468, 
+    45px 45px 10px #482896;
+    transform: scale(1.2);
+    
+}
+
+.icons {
+    display: flex;
+    padding-left: 0;
+    width: 100%;
+    position: relative;
+    font-size: 24px;
+    justify-content: center;
+}
+
+.icons li {
+    padding: 8px 12px;
+    list-style: none;
+}
+
+.icons a {
+    color: #551a8b;
+}
+
+.icons a:hover {
+    color: red;
+}
+
+

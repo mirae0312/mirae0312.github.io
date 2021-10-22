@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>image</title>
+</head>
+<body>
+    <h1>image</h1>
+    <!-- src이 틀리면 alt가 출력 -->
+    <img src="../sample/image/flower1.PNG" alt="꽃사진1" width="300px">
+    <hr>
+    <!-- 이미지 주소 링크로 삽입하기 -->
+    <img src="http://blog.jinbo.net/attach/615/200937431.jpg" alt="토토로" width="300px">
+
+    <h2>절대크기 | 상대크기</h2>
+    <div>
+        <img src="../sample/image/flower1.PNG" alt="꽃이미지1" width="200px">
+        <img src="../sample/image/flower2.PNG" alt="꽃이미지2" width="200px">
+        <img src="../sample/image/flower3.PNG" alt="꽃이미지3" width="200px">
+        <img src="../sample/image/flower4.PNG" alt="꽃이미지4" width="200px">
+        <img src="../sample/image/flower5.PNG" alt="꽃이미지5" width="200px">
+    </div>
+    <hr>
+    <div>
+        <!-- 부모요소의 너비를 100% 기준으로 처리, 줄바꿈 크기변경함 -->
+        <img src="../sample/image/flower1.PNG" alt="꽃이미지1" width="15%">
+        <img src="../sample/image/flower2.PNG" alt="꽃이미지2" width="15%">
+        <img src="../sample/image/flower3.PNG" alt="꽃이미지3" width="15%">
+        <img src="../sample/image/flower4.PNG" alt="꽃이미지4" width="15%">
+        <img src="../sample/image/flower5.PNG" alt="꽃이미지5" width="15%">
+    </div>
+
+    <!-- 이미지에 링크삽입 -->
+    <h2>image link</h2>
+    <a href="http://w3schools.com">
+        <img src="../sample/image/img1.jpg" alt="" width="300px">
+    </a>
+
+    <hr>
+
+    <!-- 
+        > 하나의 이미지를 나눠서 2개의 링크삽입 <
+        shape(지정한이미지의 모양) : rect - 사각형
+        coords - 꼭지점 2개 왼쪽/ 오른쪽아래
+        href - 이동할 주소
+        title - 지정한곳에 마우스커서에 나오는 타이틀
+        target - _blank 이동말고 새창띄우기
+        usemap - img 와 map태그를 연결해주는 역활 꼭 #붙힐것 
+    -->
+    <img src="../sample/image/river1.PNG" alt="두물머리 이미지" width="500px" usemap="#potal-map">
+    <map name="potal-map">
+        <area shape="rect" coords="0,0,250,333" href="http://naver.com" alt="네이버로이동" title="네이버로이동" target="_blank">
+        <area shape="rect" coords="250,0,500,333" href="http://google.com" alt="구글로이동" title="구글로이동">
+    </map>
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

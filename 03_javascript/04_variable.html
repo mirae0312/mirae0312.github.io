@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>variable</title>
+</head>
+<body>
+    <h1>variable</h1>
+    <button onclick="foo();">실행</button>
+    <script>
+    // 전역변수 : 함수 밖에 선언된 변수
+    // window전역객체의 속성으로 등록
+    var a = 100;
+    console.log(window);
+
+    function foo() {
+        // 지역변수 : 함수 안에 선언된 변수
+        var a = 99;
+        console.log(a);
+
+        // 변수명 충돌이 있는 전역변수 참조
+        console.log(window.a);
+        // this용법2 : 일반함수 안에서 this는 window전역객체를 의미한다.
+        console.log(this.a);
+
+        var b = 88;
+    }
+    </script>
+
+    <h2>function scope</h2>
+    <button onclick="bar();">실행</button>
+    <script>
+    /**
+     * var키워드로 선언된 변수는 함수 scope를 가진다.
+     * - 오직 함수의 안팎 만을 구분한다.
+     * - c-family언어의 block scope와 다르므로 유의해서 사용해야한다.
+     */
+        function bar() {
+            var k = 1;
+
+            if(true){
+                var k = 2;
+            }
+            console.log(k);
+        }
+    var n = 10;
+    var n = 11;
+    var n = 12;
+    console.log(n);
+    
+    for(var i = 0; i < 10; i++){
+
+    }
+    console.log(i);
+    </script>
+
+    <h2>block scope</h2>
+    <button onclick="hoo();">실행</button>
+    <script>
+    /**
+     * let : block scope를 가진 변수선언 키워드
+     * const : block scope를 가진 상수선언 키워드. 초기화 필수.
+     * 
+     * 전역에 선언해도 window객체의 속성으로 등록되지 않는다.
+     * ES6 ECMAScrip2015 최신표준스크립트
+     */
+        function hoo() {
+            let k = 1;
+        //  let k = 3; //Uncaught SyntaxError: Identifier 'k' has already been declared
+            if(true){
+                let k = 2;
+            }
+            // 유효성 검사 console에 출력
+            console.log(k);
+        }
+
+    for(let j = 0; j < 10; j++){
+
+    }
+    // console.log(j);
+
+    let z = 999;
+
+    // const ABC; Uncaught SyntaxError: Missing initializer in const declaration (초기값이 없다.)
+    const ABC = 123;
+    console.log(ABC);
+    let d = ABC;
+    // ABC = 456; Uncaught TypeError: Assignment to constant variable.
+
+    </script>
+
+
+</body>
+</html>

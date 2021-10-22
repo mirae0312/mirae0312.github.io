@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom</title>
+    <script src="js/jquery-3.6.0.js"></script>
+    <style>
+    .add {
+        color: steelblue;
+    }
+    </style>
+</head>
+<body>
+    <h1>dom</h1>
+    <button id="btn0">요소추가</button>
+    <div class="play"></div>
+    <script>
+    $(btn0).click(() => {
+        // 1. 새로운 요소 추가하는 방법
+        const $play = $(".play");
+        $play.html("<p>안녕!</p>") // 문자열
+        const $p = $("<p>잘가!</p>"); // 동적으로 생성된 p태그를 감싼 jq객체
+        $play.append($p); // $play의 마지막 자식요소로 $p추가, html은 앞에쓴걸 다삭제후 생성 추가할경우 append사용
+        
+        // js태그객체 바로추가
+        const pTag = document.createElement("p");
+        pTag.innerHTML = "추워!";
+        $play.append(pTag); // $play에 js객체를 append()가능!
+
+   
+        // 2. 기존요소추가: 이동
+        $play.append($(btn0)); // 버튼이 $play의 자식요소로 맨아래로 이동!
+    });
+    </script>
+
+    <h1>기존요소 기준 요소추가</h1>
+    <button id="btn1">append</button>
+    <button id="btn2">prepend</button>
+    <button id="btn3">after</button>
+    <button id="btn4">before</button>
+    <!-- (h1#test$>span{A}) -->
+    <h1 id="test1"><span>A</span></h1>
+    <h1 id="test2"><span>A</span></h1>
+    <h1 id="test3"><span>A</span></h1>
+    <hr>
+    <h1 id="test4"><span>A</span></h1>
+    <script>
+    /**
+     * !기존요소.append(새요소)
+     *  - 기존요소의 마지막 자식요소로 추가
+     *  - 마지막요소로 (ABC...)
+     */
+    (() => {
+        let ch = 66; // 아스키코드 B~계속 추가
+        $(btn1).click(() => {
+            $(test1)
+                .append($(`<span class='add'>${String.fromCharCode(ch++)}</sapn>`))
+                .css("border", "1px solid steelblue");
+        });
+    })();
+
+
+    /**
+     * !기존요소.prepend(새요소)
+     *  - 기존요소의 첫 자식요소로 추가
+     *  - 첫요소로 (...CBA)
+     */
+    (() => {
+        let ch = 66; // 아스키코드 B~계속 추가
+        $(btn2).click(() => {
+            $(test2).prepend($(`<span class='add'>${String.fromCharCode(ch++)}</sapn>`));
+        });
+    })();
+
+
+    /**
+     * !기존요소.after(새요소)
+     *  - 기존요소의 다음 형제요소로 추가
+     *  - 형제요소로 (A
+     *             ...DCB)
+     */
+    (() => {
+        let ch = 66; // 아스키코드 B~계속 추가
+        $(btn3).click(() => {
+            $(test3).after($(`<span class='add'>${String.fromCharCode(ch++)}</sapn>`));
+        });
+    })();
+
+
+    /**
+     * !기존요소.before(새요소)
+     *  - 기존요소의 이전 형제요소로 추가
+     *  - 형제요소로 (BCD...
+     *             A)
+     */
+    (() => {
+        let ch = 66; // 아스키코드 B~계속 추가
+        $(btn4).click(() => {
+            $(test4).before($(`<span class='add'>${String.fromCharCode(ch++)}</sapn>`));
+        });
+    })();
+
+    </script>
+
+    <h1>추가될요소 기준 요소추가</h1>
+    <!-- button#btn$@5*4 -->
+    <button id="btn5">appendTo</button>
+    <button id="btn6">prependTo</button>
+    <button id="btn7">insertAfter</button>
+    <button id="btn8">insertBefore</button>
+
+    <!-- (h1#test$@5>span{A})*4 -->
+    <h1 id="test5"><span>A</span></h1>
+    <h1 id="test6"><span>A</span></h1>
+    <h1 id="test7"><span>A</span></h1>
+    <hr>
+    <h1 id="test8"><span>A</span></h1>
+
+    <script>
+    /**
+     * !새요소.appendTo(새요소)
+     *  - 기존요소의 마지막 자식요소로 추가
+     *  - 마지막 요소로 (ABCD...)
+     */ 
+    (() => {
+        let ch = 66; // 아스키코드 B~계속 추가
+        $(btn5).click(() => {
+            // 추가될요소가 먼저 작성
+            $(`<span class='add'>${String.fromCharCode(ch++)}</sapn>`)
+                .appendTo($(test5))
+                // 주체가되는 요소를 꼭 확인할것. 추가되는요소가 주체! append는 기존요소가 주체!
+                .css("border", "1px solid steelblue");
+        });
+    })();
+
+    /**
+     * !새요소.prependTo(새요소)
+     *  - 기존요소의 첫 자식요소로 추가
+     *  - 첫 요소로 (...CBA)
+     */ 
+    (() => {
+        let ch = 66; 
+        $(btn6).click(() => {
+            // 추가될요소가 먼저 작성
+            $(`<span class='add'>${String.fromCharCode(ch++)}</sapn>`)
+                .prependTo($(test6))
+                .css("border", "1px solid steelblue");
+        });
+    })();
+
+    /**
+     * !새요소.insertAfter(새요소)
+     *  - 기존요소의 다음 형제요소로 추가
+     *  - 첫 요소로 (A
+     *             ...CB)
+     */ 
+    (() => {
+        let ch = 66; 
+        $(btn7).click(() => {
+            // 추가될요소가 먼저 작성
+            $(`<span class='add'>${String.fromCharCode(ch++)}</sapn>`)
+                .insertAfter($(test7))
+                .css("border", "1px solid steelblue");
+        });
+    })();
+
+    /**
+     * !새요소.insertBefore(새요소)
+     *  - 기존요소의 이전 형제요소로 추가
+     *  - 첫 요소로 (BC...
+     *             A)
+     */ 
+    (() => {
+        let ch = 66; 
+        $(btn8).click(() => {
+            // 추가될요소가 먼저 작성
+            $(`<span class='add'>${String.fromCharCode(ch++)}</sapn>`)
+                .insertBefore($(test8))
+                .css("border", "1px solid steelblue");
+        });
+    })();
+    </script>
+
+    <h1>요소 복제 | 제거</h1>
+    <button id="btn9">clone</button>
+    <button id="btn10">remove | detach</button>
+    <button id="btn11">empty</button>
+    <div class="original">
+        <div class="item"></div>
+    </div>
+    <div class="target"></div>
+    <script>
+    $(".item").hover((e) => {
+        //mouseenter
+        $(e.target).addClass("lime");
+    }, (e) => {
+        //mouseleave
+        $(e.target).removeClass("lime");
+    });
+
+    /**
+     * !clone(eventHanding:boolean)
+     *  - 이벤트핸들링 복제여부 false;     
+     */
+    $(btn9).click((e) => {
+        const $clonedItem = $(".original .item").clone(true);
+        console.log($clonedItem);
+
+        $clonedItem.appendTo($(".target"));
+        // $(".target").append($clonedItem); ▲같은내용
+    });
+
+    /**
+     * - remove : 이벤트요소가 제거된 삭제요소를 반환
+     * - detach : 이벤트요소가 유지된 삭제요소를 반환
+     */
+    $(btn10).click((e) => {
+        // const $removedItem = $(".original .item").remove();
+        // $(".target").append($removedItem);
+
+        const $detachedItem = $(".original .item").detach();
+        $(".target").append($detachedItem);
+    });
+
+    /**
+     * 모든 자식요소 제거
+     *  - empty
+     */
+    $(btn11).click(() => {
+        $(".original, .target").empty();
+    });
+    </script>
+
+
+    <style>
+    .original, .targer {
+        border: 3px solid gray;
+        padding: 5px;
+        margin: 10px 0;
+        min-height: 100px;
+    }
+    .item {
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        border: 3px solid #000;
+    }
+    .lime {
+        background-color: lime;
+    }
+    </style>
+    
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

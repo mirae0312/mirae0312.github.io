@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>destructing assignment</title>
+</head>
+<body>
+    <h1>destructing assignment</h1>
+    <!-- 구조분해 할당 (비구조화 할당) -->
+    <h2>배열</h2>
+    <button onclick="test1();">실행</button>
+    <script>
+    /**
+     * 배열 구조분해 할당
+     */ 
+    const test1 = () => {
+        const arr = [1,2,3];
+        const [a,b,c] = arr;
+        // const a = arr[0];
+        // const b = arr[0];
+        // const c = arr[0];
+        console.log(a); //1
+        console.log(b); //2
+        console.log(c); //3
+
+        const[d, ,e, f] = arr; // 0번지부터인데 건너뛰는법 , ,
+        console.log(d); //1
+        console.log(e); //2
+        console.log(f); //undefined
+
+        // 기본값 할당 : 할당된 값이 없는 경우 기본값 사용
+        const [g = 77,,,h = 100] = arr;
+        console.log(g); //1
+        console.log(h); //100
+
+        // 값교환
+        let i = 7;
+        let j = 8;
+        [i, j] = [j, i];
+        console.log(i); //8
+        console.log(j); //7
+
+        // 함수 리턴값
+        // 나머지 파라미터 : 마지막에 딱 한번 사용가능.
+        const [k, l, m, ...rest] = foo();
+        console.log(k);
+        console.log(l);
+        console.log(m);
+        console.log(rest); //3번지부터 남은 모든요소들을 담은 배열.[4, 5, 6, 7, 8, 9, 10]
+
+        // 배열인 함수인자
+        koo(rest);
+
+        // csv데이터
+        // 학생데이터 평균내기
+        // 홍길동(남) 평균 80.0점
+        // 신사임당(여) 평균 88.5점
+        // 전봉준(남) 평균 60.5점
+        const data = '홍길동,남,90,80,70|신사임당,여,88,100,50|전봉준,남,55,80,77';
+        const temp = data.split('|'); // split()를 구분자로 나누기
+        //#풀이2 map사용
+        const students = temp.map((s) => s.split(','));
+
+        // students.forEach((student) => printStudentInfo(student));
+        //  ▼ 아래로 생략가능. 가공되지않은 student를 그대로 전달할 경우 호출하지않은상태로 
+        // 작성해도 foEach가 알아서 해당하는 인자를 전달해줌
+        students.forEach(printStudentInfo);
+
+
+        //#풀이1
+        // for(let str of temp){
+        //     let student = str.split(',');
+        //     printStudentInfo(student);
+        // }
+    };
+
+    const printStudentInfo = ([name, gender, ...scores]) => { // 구조분해할당
+        //#풀이2
+        const sum = scores
+        // const sum = scores.map((n) => Number(n)).reduce((sum, n) =>sum + n);
+        // ▼ 아래를 줄인것.
+            .map((n) => {
+                return Number(n);
+            })
+            .reduce((sum, n) => {
+                console.log(sum, n);
+                return sum + n
+            });
+            
+        const avg = Math.round(sum / scores.length * 10) / 10;     
+        console.log(`${name}(${gender}) - ${avg}점`);
+
+        //#풀이1
+        // let sum = 0;
+        // for(let score of scores){
+        // sum += Number(score); // Number로 변환해서 더하기
+        // }
+        // const avg = Math.round(sum / scores.length * 10) / 10; // 소숫점 첫번째자리까지
+        // console.log(`${name}(${gender}) - ${avg}점`);
+    };
+
+    const foo = () => [1,2,3,4,5,6,7,8,9,10];
+
+    const koo = ([a, b, ...rest]) => {
+        console.log(a, b); //4 5
+        console.log(rest); //[6, 7, 8, 9, 10]
+    };
+    </script>
+    <h2>객체</h2>
+    <button onclick="test2();">실행</button>
+    <button onclick="test3();">가족정보</button>
+    <script>
+    /**
+     * 두 회원의 가족정보는 다음과 같다.
+     * 한명의 회원정보를 출력하는 prinFamilyInfo를 사용하여 아래와 같이 출력
+     *  - 본인: 홍길동, 부: 홍기만, 모: 이영희, 형제: 홍진경
+     *  - 본인: 유관순, 부: 유재석, 모: 강진희, 형제: 유희열
+     */
+    const test3 = () => {
+        const people = [
+            {
+                name : '홍길동',
+                family : {
+                    father : "홍기만",
+                    mother : "이영희",
+                    sister : "홍진경"
+                } 
+            },
+            {
+                name : '유관순',
+                family : {
+                    father : "유재석",
+                    mother : "강진희",
+                    brother : "유희열"
+                }
+            },
+        ];
+        //하나의 요소마다 printFamilyInfo() 실행하기위해 forEach사용
+        // people.forEach((p) => printFamilyInfo(p)); ▼줄여서 쓰기
+        people.forEach(printFamilyInfo);
+    };
+    /**
+     * 
+     */
+    const printFamilyInfo = ({name, family: {father, mother, brother, sister}}) => {
+        console.log(`본인: ${name}, 부: ${father}, 모: ${mother}, 형제: ${brother || sister}`);//undefined값을 없애기 위해 || 사용
+    };
+    
+  /**
+   * 객체의 속성 값을 변수에 쉽게 옮겨담는 문법
+   */
+  const test2 = () => {
+    const obj = {
+      id : 1234135,
+      username : {
+        firstname : '홍',
+        lastname : '길동'
+      },
+      sns : ['facebook', 'instagram', 'twitter'],
+      address : '경기도 남양주시'
+    };
+    // const {name, id, address = '서울시 강남구'} = obj; // 값이없다면 기본값을 작성, 기본값이있다면 기존 기본값을 가져옴
+    // console.log(id);
+    // console.log(name);
+    // console.log(address);
+
+    const {username : {firstname, lastname : familyname}} = obj;
+    console.log(firstname);
+    console.log(familyname);
+    // console.log(username); // Uncaught ReferenceError: username is not defined
+    
+    const {id: userId} = obj; // 새롭게 선언 id: userId(id를 userId로 변경)
+    console.log(userId);
+
+    // t, i, f에 sns담기
+    const{sns: [f, i, t]} = obj;
+    console.log(f); // facebook
+    console.log(i); // instagram
+    console.log(t); // twitter
+
+    // 함수리턴 qoo배열의 일부만 꺼내서 리턴값에 담아서 바로 사용
+    const {memberId, cash} = qoo();
+    console.log(memberId, cash);
+
+    // 인자로 객체를 전달하는 경우
+    kar(obj);
+
+    // 정보 안내 함수 : 객체의 해당 내용만 출력
+    // kh는 kh정보를 담은 객체
+    const kh = getKHInfo();
+    sayUrl(kh);
+    sayTel(kh);
+    sayAddr(kh, '강남');
+    sayAddr(kh, '경기');
+    sayAddr(kh); // 함수에 기본값 추가됨. sayAddr에 search = '안녕'입력
+  };
+  const sayUrl = ({url}) => {
+      console.log(`문의하신 url은 ${url}입니다.`);
+  }
+  const sayTel = ({tel}) => {
+      console.log(`문의하신 전화번호는 ${tel}입니다.`);
+  }
+  const sayAddr = ({addr}, search = '안녕') => {
+      const result = addr[search];
+      if(result){
+          console.log(`문의하신 ${search}지원은 ${result}에 위치합니다.`);
+      }
+      else{
+          console.log(`문의하신 ${search}지원은 존재하지 않습니다.`);
+      }
+  }
+
+  const getKHInfo = () => ({ // return 생략시 객체리턴은({})로써줌
+      url: "http://iei.or.kr",
+      tel: [
+          "070-1234-1234",
+          "070-3333-5555",
+          "070-234-4567"
+      ],
+      addr: {
+          "강남" : "서울시 강남구",
+          "종로" : "서울시 종로구",
+          "당산" : "서울시 영등포구"
+      }
+  });
+  const kar = ({id, username, ...rest}) => {
+      console.log(id, username);
+      console.log(rest);
+  }
+      
+  const qoo = () => {
+      return {
+          memberId : 'sinsa',
+          tel : "01012341234",
+          married : true,
+          cash : 10000000
+      };
+  }
+    </script>
+
+</body>
+</html>

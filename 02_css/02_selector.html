@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector</title>
+</head>
+<body>
+    <h1>Selector</h1>
+    <!-- ul>li#li${안녕$}*5 -->
+    <ul>
+        <li id="li1" class="bar">안녕1</li>
+        <li id="li2" class="foo">안녕2</li>
+        <li id="li3" class="foo">안녕3</li>
+        <li id="li4" class="foo bar">안녕4</li>
+        <li id="li5" class="bar">안녕5</li>
+    </ul>
+    <!-- 원래는 head에 써야함 -->
+    <!-- css주석은 /* */ -->
+    <style>
+
+    /* [태그] 선택자 */
+    /* li {
+        color: blue;
+    } */
+
+    /* 
+        dashed 점선 
+        underlin 밑줄 
+        wavy 물결 
+    */
+
+    /* [아이디] 선택자, 여러개는 콤마로 나열 */
+    /* #li3, #li4 {
+        text-decoration: wavy underline red;
+    } */
+
+    /* [클래스] 선택자 */
+    /* .foo {
+        background-color: lightgray;
+        color: white;
+    }
+    .bar {
+        font-size: 24px;
+    }
+    /* 클래스를 같이 쓸 경우 꼭붙혀서써야함 */
+    /* .foo.bar {
+        border: 1px solid red; 
+    } */
+    </style>
+    <div id="mydiv">
+        <h4>안녕</h4>
+        <ul>
+            <li>홍길동</li>
+            <li>이순신</li>
+        </ul>
+        <div id="otherdiv">
+            <h4>Hello</h4>
+            <ul>
+                <li>James</li>
+                <li>Bread</li>
+            </ul>
+        </div>
+    </div>
+    <style>
+    /* 자식 태그 : 공란 + > 작성 */
+    /* #mydiv > h4 {
+        color: hotpink;
+    } */
+
+    /* 자손 태그 : > 없이 작성 */
+    /* #mydiv h4 {
+        color: chocolate;
+    } */
+
+    /* James Bread만 background-color넣기 */
+    #mydiv > #otherdiv > ul {  /* #mydiv > div > ul 도 가능 */
+        background-color:cornflowerblue;
+    }
+
+    </style>
+    <!-- div.container : . 은 class -->
+    <div class="container">
+        <!-- h2#title${가을$}*5, 모두 형제태그, 문서작성한 순서대로 selector중에 이전형제요소를 가르키는건 없다.-->
+        <h2 id="title1">가을1</h2>
+        <h2 id="title2">가을2</h2>
+        <h2 id="title3">가을3</h2>
+        <h2 id="title4">가을4</h2>
+        <h3 id="title5">가을5</h3>
+    </div>
+    <style>
+
+    /* 다음 형제요소 하나 + */
+    /* #title2 + h2 { /* title3이 선택됨*/
+        /* color: slateblue;
+    } */
+
+    /* 다음 형제요소 모두 ~ */
+    /* ,를써서 나열할때는 무조건 처음부터 작성 */
+    /* title2 ~ * -> title2다음 모두 선택 '*'' 아스타태그는 모두를 가르킨다. */
+    /* #title2 ~ h2 { /* h2 이후로 모든'h2' 선택, h3은 선택안됨 */
+        /* text-decoration: underline; */
+    /* } */
+    </style>
+
+    <fieldset>
+        <legend>속성 selector</legend>
+        <select name="menu">
+            <option value="김밥">김밥</option>
+        </select>
+        <br>
+        <input type="text"><br>
+        <input type="text" name="userName" id="userName" placeholder="사용자이름"><br>
+        <input type="text" name="petName" id="petName" placeholder="애완동물이름"><br>
+        <input type="email" name="userEmail" id="userEmail">
+        <!-- input[name=address] -->
+        <!-- iput#phone[name=phone][value] #은 id -->
+        <iput id="phone" name="phone" value=""></iput>
+
+        <!-- iput#phone[type=tel][name=phone][value] -->
+        <!-- iput:tel#phone[name=phone][value] :tel css엔 없는 표현 -->
+        <iput:tel id="phone" name="phone" value=""></iput:tel>
+    </fieldset>
+    <style>
+    /* 속성선택자 [] */
+    /* input[name]{} : input속성에서 name태그가 있는것들 */
+    /* [name] {
+        background-color: pink;
+    } */
+
+    /* name = userName인 태그만 */
+    /* [name=userName] {
+        background-color: pink;
+    } */
+
+    /* 시작하는 속성값 */
+    /* ^= name이 user로 시작하는 값 */
+    /* [name^=user] {
+        background-color: pink;
+    } */
+
+    /* 끝나는 속성값 */
+    /* $= name이 Name으로 끝나는 값 */
+    /* [name$=Name] {
+        background-color: pink;
+    } */
+
+    /* 포함된 속성값 */
+    /* *= name에 a가 포함된 값 */
+    [name*=a]{
+        background-color: pink;
+    }
+    </style>
+
+    <h2 id="koo">가상선택자</h2>
+    <a id="mylink" href="http://www.innerbody.com/htm/body.html?123">http://www.innerbody.com/htm/body.html</a>
+    <style>
+    #mylink:link{
+        /* 방문전 */
+        color: red;
+        text-decoration: none; /* a태그의 기본 style underline 제거 */
+    }
+    #mylink:hover{
+        color: orange;
+    }
+    #mylink:active{
+        color: yellowgreen;
+        text-decoration: underline; /* 클릭했을때만 밑줄(underline)*/
+    }
+    #mylink:visited{
+        /* 방문후 */
+        color: pink;
+    }
+
+    /* hover 호버했을때 (마우스를 위에 올렸을때) */
+    #koo:hover {
+        color: red;
+    }
+
+    /* active 클릭했을때 */
+    #koo:active {
+        color: royalblue;
+    }
+    </style>
+
+    <fieldset>
+        <legend>Fruits</legend>
+        <!-- (input:checkbox[name=fruit][value]#fruit$+label[for=fruit$])*3 -->
+        <input type="checkbox" name="fruit" id="fruit1" value="사과"><label for="fruit1">사과</label>
+        <input type="checkbox" name="fruit" id="fruit2" value="배"><label for="fruit2">배</label>
+        <input type="checkbox" name="fruit" id="fruit3" value="포도"><label for="fruit3">포도</label>
+        <br>
+        <input type="text" name="query" disabled>
+    </fieldset>
+    <style>
+    :disabled { /* 비활성화 */
+        background-color: gray;
+    }
+    [name=query]:focus {
+        background-color: darkmagenta;
+        color: white;
+    }
+
+    /* 과일체크하면 체크박스 + 폰트사이즈 키우기 */
+    [name=fruit]:checked {
+        width: 30px;
+        height: 30px;
+    }
+    [name=fruit]:checked + label {
+        font-size: 30px;
+    }
+
+    </style>
+
+    <!-- .wrapper>p{테스트$}*5pre{테스트6} -->
+    <div class="wrapper">
+        <p>테스트1</p>
+        <p>테스트2</p>
+        <p>테스트3</p>
+        <p>테스트4</p>
+        <p id="ppp">테스트5</p>
+        <ul>
+            <li>테스트6</li>
+            <li>테스트7</li>
+        </ul>
+        <pre>테스트8</pre>
+    </div>
+    <style>
+    /* first-child : (첫번째자손) 위치가 중요 */
+    /* .wrapper :first-child {
+        color: red;
+    }
+
+    /* last-child: (마지막자손) */
+    /* .wrapper pre:last-child(pre테크 마지막자손) 마지막에있는 pre태그 자손 */
+    /* .wrapper pre:last-child {
+        color: yellowgreen; */
+    /* } */
+
+    /* nth-child() : ()번째자손, 2n(2배수) */
+    /* .wrapper li:nth-child(2n) {
+        color: blue;
+    } */
+
+    /* p:first-of-type : p태그중의 첫번째 */
+    /* .wrapper p:first-of-type {
+        text-decoration: underline;
+    }
+
+    /* p:last-of-type : p태그중의 마지막 */
+    /* .wrapper p:last-of-type {
+        text-decoration: underline;
+    } */ 
+
+    /* p:nth-of-type(2n) : p태그의 2배수(2n), 홀수는 (2n+1) */
+    /* .wrapper p:nth-of-type(2n) {
+        text-decoration: underline;
+    } */
+
+    /* 부정선택자 :not(#ppp) 해당선택자의 반전(이거빼고전부) */
+    /* .wrapper :not(#ppp) {
+        color: yellowgreen;
+    } */
+
+    /* 
+        루트선택자 : 최상위요소 
+        :root html로부터 물려받은 모든 요소에 따로지정되지않으면 모두 적용
+    */
+    :root {
+        background: beige;
+    }
+
+    </style>
+
+    <h2>선택자 우선순위</h2>
+    <div class="wrapper">
+    <!-- /* a=1 b=0 c=0 d=0 -> specificity = 1,0,0,0 */-->
+    <div id="box" class="boo" style="background-color: orangered;"></div>
+    </div>
+    <style>
+    /* 
+        !important(한태그에만 적용. 절대바뀌면 안되는 태그에 적용)
+
+        https://www.w3.org/TR/CSS21/cascade.html#specificity
+
+        inline style(a)
+    
+        #id(b)
+
+        .class(c)
+        [attribute](c)
+        :pseudo-class(c)
+
+        ::pseudo-element(d)
+        tag(d)
+
+        *(0)
+    */
+    /* a=0 b=0 c=1 d=1 -> specificity = 0,0,1,1 */
+    div {
+        width: 300px;
+        height: 300px;
+        border: 3px solid #000;
+        background-color: hotpink !important; 
+    }
+
+    /* a=0 b=0 c=1 d=0 -> specificity = 0,0,1,0 */
+    .boo {
+        background-color: yellowgreen;
+    }
+
+    /* a=0 b=0 c=1 d=1 -> specificity = 0,0,1,1 */
+    .wrapper > div {
+    background-color: palevioletred;
+    }
+
+    /* a=0 b=1 c=0 d=0 -> specificity = 0,1,0,0 */
+    #box {
+        background-color: thistle;
+    }
+
+    </style>
+
+</body>
+</html>

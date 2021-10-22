@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery selector</title>
+    <script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
+    <h1 id="myh1" class="odd">jquery selector</h1>
+    <h2 id="myh2" class="even">jquery selector</h2>
+    <h3 id="myh3" class="odd">jquery selector</h3>
+    <h4 id="myh4" class="even">jquery selector</h4>
+    <h5 id="myh5" class="odd">jquery selector</h5>
+    <h6 id="myh6" class="even">jquery selector</h6>
+    <div class="wrapper">
+       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum veritatis recusandae molestias alias qui est nihil quas officiis eveniet nisi. Aperiam nam soluta sapiente aspernatur officiis magni, eveniet vero ipsum.</p>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime at iure neque quo, voluptate nam eligendi, facere alias quos facilis optio ad consequuntur aperiam repudiandae blanditiis saepe, doloremque consequatur sequi.</p>
+       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum tempore recusandae fugiat libero minus quia reprehenderit ratione vitae aliquam ea. Necessitatibus exercitationem nemo ipsam quis amet nam illum unde recusandae?</p>
+       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem molestiae excepturi, vero quas quia ut temporibus fuga quam. Aliquid voluptatem recusandae aut id officia placeat itaque dicta laborum, quaerat atque.</p>
+    </div>
+    <script>
+    (() => {
+        $(".wrapper p:first").css("color", "#cfc");
+        $(".wrapper p:last").css("color", "lightblue");
+        $(".wrapper p:even").css("font-size", "1.5em");
+        $(".wrapper p:odd").css("font-size", ".5em");
+    })();
+
+    (() => {
+        // 아이디선택자
+        $("#myh1").css("color", "hotpink");
+        console.log($("#myh1")); //#myh1 태그객체를 감싼 jquery객체
+
+        // 클래스선택자
+        $(".even").css("background-color", "yellow");
+        // console.log($(".even"));
+
+        // js로 했을때 
+        // document.querySelectorAll(".even").forEach((h, index) => {
+        //     h.style.backgroundColor = "red";
+        // });
+
+        // 태그선택자
+        $("h5").css({
+            "text-decoration": "underline",
+            "color": "springgreen"
+        });
+    })();
+    </script>
+    <fieldset>
+        <legend>checkbox 처리</legend>
+        <input type="checkbox" name="hobby" id="game" value="game">
+        <label for="game">게임</label>
+        <input type="checkbox" name="hobby" id="movie" value="movie">
+        <label for="movie">영화</label>
+        <input type="checkbox" name="hobby" id="music" value="music">
+        <label for="music">음악</label>
+
+        <input type="checkbox" id="hobbyCheckAll">
+        <label for="hobbyCheckAll">전체선택</label>
+        <br>
+        <input type="button" value="확인" id="btn-hobby">
+        <input type="button" value="선택값확인" id="btn-hobby-checked">
+    </fieldset>
+    <script>
+
+    $("#btn-hobby-checked").click((e) => {
+        // 체크된것만 가져오기
+        const $hobbies = $("[name=hobby]:checked");
+        console.log($hobbies);
+        let str = "";
+        $hobbies.each((i, hobby) => {
+            str += hobby.value;
+        });
+        alert(str);
+    });
+
+    // 체크선택한 값 alert로 보기
+    // $("#btn-hobby-checked").click((e) => {
+    //     const $hobbies = $("[name=hobby]");
+    //     let str = "";
+    //     $hobbies.each((i, hobby) => {
+    //         // jquery객체.is(seletor) 현재요소가 이 선택자와 일치여부
+    //         if($(hobby).is("checked")){
+    //             str += $(hobby).val() + " ";
+    //         }
+    //     });
+
+    //     alert(str);
+    // });
+
+    // 전체선택.해제
+    $("#hobbyCheckAll").change(function(e){
+        // console.log(e.target);
+        // console.log(this);
+        // const bool = this.checked;
+        const bool = $(this).prop("checked");
+        $("[name=hobby]").prop("checked", bool);
+
+    });
+
+    $("#btn-hobby").click((e) => {
+        const $hobbies = $("[name=hobby]");
+        console.log($hobbies);
+
+        //each : 각요소별로 callback함수
+        $hobbies.each((index, hobby) => {
+            // console.log(index, hobby); // 이때 hobby는 js태그객체
+            // 1. js
+            // console.log(hobby.value);
+            // console.log(hobby.checkd); //getter
+            // hobby.checkd = true; //setter
+
+            // 2. jquery
+            const $hobby = $(hobby); // js객체를 바로 전달해서 jquery객체 생성
+            console.log($hobby.val());
+            console.log($hobby.prop("checked")); // 체크유무 t/f 반환
+            $hobby.prop("checked", true);
+        });
+    });
+    </script>
+
+   <ul id="list">
+       <li>안녕하세요1</li>
+       <li>안녕하세요2</li>
+       <li>안녕하세요3, 잘가요</li>
+       <li>안녕하세요4</li>
+       <li>안녕하세요5</li>
+       <!-- li{안녕하세요$@6}*5 -->
+       <li>안녕하세요6, 잘가요</li>
+       <li><a href="#">안녕하세요7</a></li>
+       <li>안녕하세요8</li>
+       <li>안녕하세요9, 잘가요</li>
+       <li>안녕하세요10</li>  
+   </ul>
+   <script>
+    // $("#list > li").css("color", "tomato");
+    // eq() 몇번째 값
+    // $("#list > li:eq(1)").css("color", "tomato"); // 0-based index 두번째요소
+    // $("#list > li:lt(5)").css("color", "tomato"); // 0,1,2,3,4번지 요소
+    // $("#list > li:gt(5)").css("color", "tomato"); // 6,7,8,9번지 요소
+    // $("#list > li:contain('잘가요')").css("color", "tomato"); // 태그내용검사
+    // $("#list > li:has(a)").css("color", "tomato"); // 선택자
+    $("#list > li:not(:has(a))").css("color", "tomato"); // 반전
+
+   </script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table</title>
+</head>
+<body>
+    <h1>table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>브라우져명</th>
+                <th>제조사</th>
+                <th>홈페이지</th>
+            </tr>
+        </thead>
+        <!-- tr>td*3-->
+        <tbody>
+            <tr>
+                <td>크롬</td>
+                <td>Google</td>
+                <td><a href="http://google.com">http://google.com</a></td>
+            </tr>
+            <tr>
+                <td>사파리</td>
+                <td>Apple</td>
+                <td><a href="http://apple.com">http://apple.com</a></td>
+            </tr>
+            <tr>
+                <td>파이어폭스</td>
+                <td>Mozilla</td>
+                <td><a href="http://Mozilla.com">http://Mozilla.com</a></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="2">브라우져 수</th>
+                <td>3</td>
+            </tr>
+        </tfoot>
+        <caption style="caption-side: bottom;">웹브라우져 표</caption>
+    </table>
+    <style>
+    table {
+        border: 1px solid #000;
+        /* border-collapse:셀테두리를 합쳐줌 */
+        border-collapse: collapse;
+        width: 500px;
+        height: 300px;
+    }
+    th, td {
+        border: 1px solid #000;
+        padding: 10px;
+        text-align: center;
+        /* vertical-align : 테이블셀에서만 적용할수있음. 셀안의 텍스트위치조정 */
+        vertical-align: center;
+    }
+    </style>
+
+
+
+
+
+
+
+</body>
+</html>

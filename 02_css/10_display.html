@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+</head>
+<body>
+    <h1>display</h1>
+    <!-- 
+        block요소
+            화면너비를 모두 사용하는 요소. 가로로 나열될 수 없고, 세로로 쌓이게 됨.
+            div hn(h1~h6) form ul li table hr 등
+     -->
+    <!-- 
+        inline요소
+            컨텐츠의 너비/높이 공간만 차지하는 요소.
+            span a img string del mark 등
+    -->
+    <h2>block</h2>
+    <!-- div.box.color${안녕$}*5 -->
+    <div class="box color1 display-inline">안녕1</div>
+    <div class="box color2 display-inline">안녕2</div>
+    <div class="box color3 display-inline">안녕3</div>
+    <div class="box color4 display-inline">안녕4</div>
+    <div class="box color5 display-inline">안녕5</div>
+
+    <h2>inline</h2>
+    <!-- span.box.color${Hello$}*5 -->
+    <span class="box color1 display-block">안녕1</span>
+    <span class="box color2 display-block">안녕2</span>
+    <span class="box color3 display-block">안녕3</span>
+    <span class="box color4 display-block">안녕4</span>
+    <span class="box color5 display-block">안녕5</span>
+
+    <h2>inline-block</h2>
+    <!-- div.box.color${안녕$}*5 -->
+    <div class="box color1 display-inline-block">안녕1</div>
+    <div class="box color2 display-inline-block">안녕2</div>
+    <div class="box color3 display-inline-block">안녕3</div>
+    <div class="box color4 display-inline-block">안녕4</div>
+    <div class="box color5 display-inline-block">안녕5</div>
+
+    <style>
+    .display-inline-block {
+        display: inline-block;
+    }
+    .display-block {
+        display: block;
+    }
+    .display-inline {
+        display: inline;
+    }
+    .box {
+        width: 200px;
+        height: 200px;
+        border: 3px solid #000;
+        color: #fff;
+        margin: 10px;
+    }
+    .color1 {background-color: red;}
+    .color2 {background-color: green;}
+    .color3 {background-color: yellow;}
+    .color4 {background-color: yellowgreen;}
+    .color5 {background-color: violet;}
+    </style>
+
+    <h2>요소 숨김</h2>
+    <div class="box display-none"></div>
+    <hr>
+    <div class="box visibility-hidden"></div>
+    <hr>
+    <div class="box opacity-0"></div>
+    <style>
+    .display-none {
+        display: none;
+    }
+    .visibility-hidden {
+        visibility: hidden;
+    }
+    .visibility-hidden:hover {
+        visibility: visible;
+    }
+    .opacity-0 {
+        opacity: 0;
+    }
+    /* opacty hover만 사용가능 */
+    .opacity-0:hover {
+        opacity: 1;
+    }
+    </style>
+
+</body>
+</html>

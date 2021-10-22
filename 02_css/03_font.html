@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>font</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" 교차 출처>
+    <link href="https: //fonts.googleapis.com/css2? family= Noto+Serif+KR:wght@200 & display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>font</h1>
+    <!-- .wrapper>p#font${가나다라바사 abcdefg HIJKLMN 0123456789}*3 -->
+    <div class="wrapper">
+        <p id="font1">가나다라바사 abcdefg HIJKLMN 0123456789</p>
+        <p id="font2">가나다라바사 abcdefg HIJKLMN 0123456789</p>
+        <p id="font3">가나다라바사 abcdefg HIJKLMN 0123456789</p>
+        <p id="font4">가나다라바사 abcdefg HIJKLMN 0123456789</p>
+    </div>
+    <style>
+    /* 부모픽셀 바꾸는법 */
+    .wrapper {
+        font-size: 20px;
+    }
+    #font1 {
+        /* 구체적인 폰트 -> 일반 폰트 */
+        /* 
+            절대단위 : px
+            상대단위 : em(부모픽셀하나), %(부모픽셀100%기준)
+         */
+        /* ""를 쓰는것이 안전 */
+        /* 일반폰트 generic-family : serif(글자끝삐침) | sans-serift(글자삐침없음) | cursive | monospaced(글자간격이같음) */
+        font-family: 'Gemunu Libre', "궁서체", "serif";
+        font-size: 32px; /* 절대 단위 */
+        font-weight: bold;
+        font-style: italic; /* 기울이기 */
+    }
+    #font2 {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 2em; /* 1em = 16px/ 32px * 상대단위 */
+    }
+    #font3 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 150%; /* 24px 상대단위*/
+        font-weight: 100;
+        line-height: 28px; /* 한줄의 높이 */
+    }
+    #font4 {
+        font: italic bold 150%/28px 'Noto Serif KR', serif;
+    }
+
+
+    </style>
+  
+</body>
+</html>

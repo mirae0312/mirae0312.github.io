@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event</title>
+    <script>
+    /**
+     * load페이지 로딩이 완료된 경우
+     */
+    window.onload = () => {
+      // alert("load complete!!!");
+    };
+
+    const init = () => {
+      // alert("boby load complete!!!");
+      document.querySelector("#btn1").onmouseover = () => {
+        btn1.style.color = "pink";
+      };
+    };
+
+    </script>
+</head>
+<body onload="init();" onclick="test7('body');">
+  <h1>event</h1>
+  <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">https://www.w3schools.com/jsref/dom_obj_event.asp</a>
+
+  <h2>event handler binding</h2>
+  <!-- event listener binding -->
+  <button onclick="test1();" id="btn1">실행</button>
+  <button id="btn2">실행</button>
+  <button id="btn3">실행</button>
+  <br>
+  <button id="btn4">제거</button>
+  <script>
+  /**
+   * event 제거
+   */
+  btn4.onclick = () => {
+    btn1.onclick = null;
+    btn3.removeEventListener("click", test1); // 콜백함수명시
+  };
+
+  /**
+   * !event handler binding 1
+   * - html의 이벤트속성에 js코드 작성
+   */
+  const test1 = () => {
+    console.log("hello world");
+  };
+  
+  /**
+   * !event handler binding 2
+   * - script상에서 handler 대입
+   * - 주의점. 기존함수 자체를 대입. 실행하지 말것. ()호출X
+   * - 같은 이벤트에 대해 여러개 등록불가(덮어씌워짐)
+   */
+  btn2.onclick = test1;
+
+  const test2 = () => {
+    console.log("byebye world");
+  };
+
+  btn2.onclick = test2;
+
+  /**
+   * !event handler binding 3
+   * - addEventListener(eventName, f)
+   * - 같은 이벤트에 대해 여러개 등록가능
+   */
+  // btn3.addEventListener("click", test1);
+  // btn3.addEventListener("click", test2);
+  btn3.addEventListener("mouseover", test1);
+  btn3.addEventListener("click", test1);
+  </script>
+
+  <h2>event object | event target</h2>
+  <button id="btn5">실행</button>
+  <button onclick="test6(event);" id="btn6">실행</button>
+  <script>
+  /**
+   * html 이벤트속성안의 호출코드는 event키워드를 사용 <button onclick="test6(event);">실행</button>
+   */
+  const test6 = (e) => {
+    console.log(e);
+  }; 
+
+  /**
+   * event발생시 관련정보를 가진 event객체생성,
+   * event handler 호출시에 인자로 전달
+   * event.taget속성은 이벤트 발생객체를 가리킴 -> #btn5
+   * 
+   * this용법5: 이벤트핸들러함수(일반익명함수)안에서 this는 이벤트발생객체를 가리킴
+   */
+  btn5.onclick = function(e){
+    console.log(e);
+    e.target.style.color = "red";
+    // this.style.color = "red"; ▲같은코드 e.target = this
+    console.log(this);
+    console.log(e.target === this);
+  }
+  </script>
+
+  <h2>key event</h2>
+  <input type="text" id="username" placeholder="이름을 입력하세요.">
+  <h1 id="welcome"></h1>
+  <fieldset>
+    <input type="text" id="text1" class="usertext" placeholder="입력1"><br>
+    <input type="text" id="text2" class="usertext" placeholder="입력2"><br>
+    <input type="text" id="text3" class="usertext" placeholder="입력3"><br>
+  </fieldset>
+  <br>
+  <script>
+
+  //#text1~3까지 입력 -> enter로 다음입력창 -> text3에서 enter후 welcome으로 출력
+  const usertexts = document.querySelectorAll(".usertext");
+  usertexts.forEach((usertext, i) => {
+    // console.log(usertext, i);
+    usertext.addEventListener('keyup', function(e) {
+      if(e.keyCode === 13){
+        if(usertexts[i + 1])
+         usertexts[i + 1].focus();
+        else {
+          welcome.innerHTML = `${text1.value}, ${text2.value}, ${text3.value}`;
+          text1.value = "";
+          text2.value = "";
+          text3.value = "";
+        }
+      }
+    });
+  });
+  // ▲ 줄여서 입력
+  // text1.addEventListener('keyup', (e) => {
+  //   if(e.keyCode === 13 || e.keyCode === 'Enter')
+  //     text2.focus();
+  // });
+  // text2.addEventListener('keyup', (e) => {
+  //   if(e.keyCode === 13 || e.keyCode === 'Enter')
+  //     text3.focus();
+  // });
+  // text3.addEventListener('keyup', (e) => {
+  //   if(e.keyCode === 13 || e.keyCode === 'Enter'){
+  //     welcome.innerHTML = `${text1.value}, ${text2.value}, ${text3.value}`;
+  //     text1.value = "";
+  //     text2.value = "";
+  //     text3.value = "";
+  //   }
+  // });
+
+
+  username.addEventListener('keyup', (e) => {
+    // console.log("keydown");
+    console.log(e);
+    console.log(e.target.value);
+
+    if(e.target.value)
+    welcome.innerHTML = `안녕하세요, <mark>${e.target.value}</mark>님~`;
+    else
+    welcome.innerHTML = ``;
+  });
+
+  /**
+   * keypress
+   * - 펑션키, 한글 입력안됨.
+   */
+  // username.addEventListener('keypress', (e) => {
+  //   console.log("keypress");
+  // });
+  // username.addEventListener('keyup', (e) => {
+  //   console.log("keyup");
+  // });
+
+  /**
+   * ?@실습문제
+   * 다음은 버튼태그 관련 data이다.
+   * --------------------------------------------
+   * id           url                  value
+   * --------------------------------------------
+   * btn-naver    btn-naver    http://naver.com     네이버
+   * btn-google   http://google.com    구글
+   * btn-kh       http://iei.or.kr     kh정보교육원
+   * btn-daum     http://daum.net      다음
+   * btn-w3       http://w3chools.com  와삼
+   * --------------------------------------------
+   * 
+   * 페이지 로딩이 끝나면 .btn-wrapper 하위에 버튼태그 5개를 생성하고,
+   * 각 버튼을 클릭시 해당링크로 이동해야한다.
+   * 
+   * class나 생성자함수
+   * 태그에 data속성을 통해 값을 보관할 수 있다. 예)data-url
+   */
+   window.addEventListener('load', () => {
+    const div = document.querySelector(".btn-wrapper");
+
+    const buttons = [
+      new Button("btn-naver","https://naver.com","네이버"),
+      new Button("btn-google","https://google.com","구글"),
+      new Button("btn-kh","https://iei.or.kr","kh정보교육원"),
+      new Button("btn-daum","https://daum.net","다음"),
+      new Button("btn-w3","https://w3schools.com","와삼"),
+    ];
+    buttons.forEach((button, i) => {
+      console.log(button + "");
+      div.append(button.generate(), " ");
+    });
+  });
+
+  class Button {
+    constructor(id, url, value){
+      this.id = id;
+      this.url = url;
+      this.value = value;
+    }
+    generate(){
+      const button = document.createElement("button");
+      button.id = this.id;
+      button.innerHTML =  this.value;
+      button.dataset.url = this.url; // data-url. 
+      button.onclick = (e) => {
+        location.href = e.target.dataset.url;
+      };
+      return button;
+    }
+    toString(){
+      return `${this.id}, ${this.url}, ${this.value}`;
+    }
+  }
+  </script>
+  <div class="btn-wrapper"[style="padding: 10px;"]></div>
+
+  <h2>폼 유효성검사</h2>
+  <!-- action="javascript:succes();"/ url이 들어가야하지만 확인용으로 js실행 -->
+  <form action="javascript:succes();" name="memberFrm" method="GET"> <!--다음페이지로 넘어감-->
+    <fieldset>
+      <legend>회원가입</legend>
+      <div>
+        <label for="id">아이디</label>
+        <input type="text" name="id" id="id">
+        <span class="error error-id">아이디는 4글자 이상이어야 합니다.</span>
+      </div>
+      <div>
+        <label for="password">비밀번호</label>
+        <input type="password" name="password" id="password">
+        <span class="error error-password">비밀번호는 4글자 이상이어야 합니다.</span>
+      </div>
+      <div>
+        <label for="password">비밀번호확인</label>
+        <input type="password" id="passwordCheck"> <!-- name필요없음. 유무검사만. -->
+        <span class="error error-passwordCheck">비밀번호가 일치하지 않습니다.</span>
+      </div>
+      <div>
+        <!-- <input type="submit" value="제출"> -->
+        <button onclick="submit">제출</button>
+      </div>
+    </fieldset>
+  </form>
+  <script>
+  /**
+   * form태그만 document.formname이 가능
+   * 
+   * 실제 submit직전에 실행▼
+   */
+  document.memberFrm.onsubmit = (e) => {
+    // id 유효성 검사
+    if(!validateId({})) // !validateId값이 false라면 false리턴
+      return false;
+    // password 유효성 검사 
+    if(!validatePassword({})) // 빈객체를 전달(아니면 오류)
+      return false;
+    // passwordCheck 유효성 검사 
+    if(!validatePasswordCheck({}))
+      return false;
+
+    // 모두 true일때 폼제출
+    return true; // 폼은 제출되지않음
+  };
+
+  //url대신 제출 확인용
+  const succes = () => {
+    const str = `id : ${id.value}
+password: ${password.value}
+---------------------------
+제출성공!`;
+    alert(str);
+  };
+
+  /**
+   * !아이디, 비밀번호 길이검사
+   */
+  const validateId = ({target = id}) => { // 필요한 속성이 target하나라면({~})작성
+                   // target이없다면 id를 사용
+    const error = document.querySelector(`.error-${target.id}`);
+    //id의 길이검사
+    if(target.value.length < 4){
+      error.style.display = "inline";
+      return false;
+    }
+    else {
+      error.style.display = "none";
+      return true;
+    }
+  };
+
+  const validatePassword = ({target = password}) => { 
+    const error = document.querySelector(`.error-${target.id}`);
+    if(target.value.length < 4) {
+      error.style.display = "inline";
+      return false;
+    }
+    else {
+      error.style.display = "none";
+      return true;
+    }
+  };
+
+  // 비밀번호 재확인 
+  const validatePasswordCheck = ({target = passwordCheck}) => { 
+    const error = document.querySelector(`.error-${target.id}`);
+    // password값과 passwordCheck의 값이 다르다면
+    if(password.value !== target.value) {
+      error.style.display = "inline";
+      return false;
+    }
+    else {
+      error.style.display = "none";
+      return true;
+    }
+  };
+  id.onblur = validateId;// onblur: id창에서 벗어나면 출력
+  password.onblur = validatePassword;
+  passwordCheck.onblur = validatePassword;
+  </script>
+
+  <style>
+  .error {
+    color: red;
+    font-size: .8px;
+    display: none;
+  }
+  </style>
+
+  <h2>bubbling</h2>
+  <div onclick="test7(event, 'box1');" class="box box1">
+    <div onclick="test7(event, 'box2');" class="box box2">
+      <div onclick="test7(event, 'box3');" class="box box3"></div>
+    </div>
+  </div>
+
+  <script>
+  /**
+   * event bubbling
+   * - 자식객체에서 발생한 이벤트는 부모객체로 전파
+   * 
+   * 클릭이벤트 핸들링
+   */
+  const test7 = (e, name) => {
+    console.log(name);
+    // 이벤트전파 propagation 방지: stopPropagation()
+    e.stopPropagation();
+  }
+  </script>
+
+  <style>
+  .box{
+    border: 2px solid #000;
+    padding: 20px;
+  }
+  .box1 {background-color: orangered;}
+  .box2 {background-color: orange;}
+  .box3 {background-color: salmon;}
+  </style>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
