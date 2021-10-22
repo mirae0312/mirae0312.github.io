@@ -9,6 +9,7 @@ function Check() {
     const pwd = checkPwd.value;
     if(localStorage.getItem(id) == pwd){
         alert("로그인 성공!");
+        console.log("hi");
         location.href='../kimmirae/index.html';
         }
     else {
