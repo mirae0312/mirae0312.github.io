@@ -1,0 +1,349 @@
+/* 색상바꾸기 */
+:root {
+    --text-color: #fff;
+    --background-color: #fcd3d1;
+    --accent-color: #fe929f;
+    --footer-color: #000;
+    --menu-color: #000000;
+    --menuBar-color: tomato;
+    --bar-color: skyblue;
+}
+/* ㅎㅏ트 */
+.heart {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: url(https://cssanimation.rocks/images/posts/steps/heart.png) no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    animation: fave-heart 1s steps(28);
+  }
+  .heart:hover {
+    background-position: -2800px 0;
+    transition: background 1s steps(28);
+  }
+  @keyframes fave-heart {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: -2800px 0;
+    }
+  }
+
+body {
+    background-image: url('../imagages/main.png');
+    background-color: #ece4e2;
+}
+
+thead {
+    margin: 0;
+    font-family: 'Raleway', Arial, sans-serif;
+}
+
+a { 
+    text-decoration: none;
+    color: var(--text-color);
+}
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    text-shadow: 4px 3px 3px #a12e97;
+    padding: 60px 12px 0px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navbar_menu.active {
+    display: flex;
+}
+
+.navbar_logo {
+    font-size: 70px;
+    color: var(--text-color);
+    font-family: 'Raleway', Arial, sans-serif;
+    /* font-family: 'Festive', cursive; */
+}
+
+.navbar_logo a {
+    text-shadow: 
+        5px 4px 0px #a12e97,
+        7px 6px 0px #551a8b;
+}
+
+.navbar_logo i {
+    color: var(--accent-color);
+}
+
+.navbar_menu {
+    /* display: flex; */
+    display: none;
+    list-style: none;
+    padding-left: 0;
+    font-weight: 800;
+}
+
+.navbar_menu li:hover {
+    background-color: var(--menuBar-color);
+    border-radius: 4px;
+}
+
+.navbar_menu li {
+    padding: 8px 12px;
+}
+
+footer {
+    clear: both;
+}
+.icons {
+    /* list-style: none; */
+    display: flex;
+    padding-left: 0;
+    width: 100%;
+    position: relative;
+    font-size: 24px;
+    justify-content: center;
+}
+
+.icons li {
+    padding: 8px 12px;
+    list-style: none;
+}
+
+.icons a {
+    color: #551a8b
+}
+
+.icons a:hover {
+    color: red;
+}
+
+.navbar_toggleBtn {
+    right: 32px;
+    font-size: 30px;
+    display: contents;
+    position: absolute;
+    padding-left: 0;
+    color: var(--bar-color);
+}
+
+/* .navbar_toggleBtn:hover {
+    animation: ping .5s linear infinite ;
+}
+/* 생선이 떨어요 */
+/* @keyframes ping {
+    from{ transform: rotate(0deg); }
+    to{ transform: rotate(360deg);}
+} */
+
+
+/* 창이 작아졌을때 반응형 메뉴바 */
+@media screen and (max-width: 760px) {
+    .navbar {
+        flex-direction: column;
+        display: flex;
+        align-items: flex-start;
+        padding: 8px 24px;
+    }
+
+    .navbar_menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar_menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar_toggleBtn {
+        display: contents;
+        flex-direction: unset;
+    }
+
+    .navbar_menu.active {
+        display: flex;
+    }
+}
+
+/* imageMenu */
+
+/* 프리픽스별 벤더구분 
+-webkit-transform  // 크롬, 사파리
+-moz-transform     // 파이어폭스
+-ms-transform       // 익스플로러
+-o-transform         // 오페라 */
+
+.main {
+    padding: 23px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+figure.imageMenu {
+    font-family: 'Raleway', 'East Sea Dokdo', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;/* im사이공간 */
+    margin: 10px;
+    min-width: 300px;
+    max-height: 400px;
+    width: 100%;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 16px;
+    background-color: var(--menu-color);
+    display: flex;
+    flex-wrap: wrap;
+    padding: auto;
+    width: 350px;
+    height: 600px;
+}
+
+figure.imageMenu *,
+figure.imageMenu *:before,
+figure.imageMenu *:after {
+    /* -webkit-box-sizing: border-box; */
+    box-sizing: border-box;
+    transition: all 0.55s ease;
+}
+figure.imageMenu img {
+    max-width: 100%;
+    backface-visibility: hidden; /* 요소숨김 */
+    vertical-align: top; /* 이미지 중간정렬 */
+    opacity: 0.9;
+}
+
+figure.imageMenu .title {
+    position: absolute;
+    top: 58%;
+    left: 25px;
+    padding: 5px 10px 10px;
+    display: flex;
+}
+
+figure.imageMenu .title:before,
+figure.imageMenu .title:after {
+    height: 2px;
+    width: 400px;
+    position: absolute;
+    content: '';
+    background-color: var(--text-color);
+}
+
+/* 가로선 */
+figure.imageMenu .title:before {
+    top: 0;
+    left: 10px;/* 오른쪽 위 선 */
+    transform: translateX(100%);
+}
+figure.imageMenu .title:after {
+    bottom: 0;
+    right: 10px; /* 왼쪽 아래선*/
+    transform: translateX(-100%);
+}
+
+/* 세로선 */
+figure.imageMenu .title div:before,
+figure.imageMenu .title div:after {
+    width: 2px; /* 세로선 폭 */
+    height: 300px; /* 세로선 길이 */
+    position: absolute;
+    content: '';
+    background-color: var(--text-color);
+}
+figure.imageMenu .title div:before {
+    top:10px;
+    right: 0;
+    transform: translateY(100%);
+}
+figure.imageMenu .title div:after {
+    bottom:10px;
+    left: 0;
+    transform: translateY(-100%);
+}
+
+/* imageMenu 제목,부제 폰트변경 */
+figure.imageMenu h2,
+figure.imageMenu h4 {
+    margin: 0;
+    text-transform: uppercase;
+}
+figure.imageMenu h2 {
+    font-weight: 400;
+}
+figure.imageMenu h4 {
+    display: block;
+    font-size: 700;
+    background-color: var(--text-color);
+    padding: 5px 10px;
+    color: var(--menu-color);
+}
+
+/* imageMenu 내용 */
+figure.imageMenu figcaption {
+    position: absolute;
+    bottom: 42%; /* 밑에서부터 */
+    left: 25px; /* 왼쪽에서부터 */
+    text-align: left;
+    opacity: 0; /* 불투명도 */
+    padding: 5px 60px 5px 10px;
+    font-size: 0.8em;
+    font-weight: 500;
+    letter-spacing: 1.5px; /* 글자사이 간격 */
+}
+figure.imageMenu figcaption p {
+    margin: 0;
+}
+figure.imageMenu a {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+figure.imageMenu:hover img,
+figure.imageMenu hover img {
+    zoom: 1;
+    filter: alpha(opacity=35); /* 이미지에 투명도 필터 */
+    opacity: 0.35;
+}
+
+/* hover 하면 이동
+    transform: translate() 사용 
+*/
+figure.imageMenu:hover .title:before,
+figure.imageMenu hover .title:before,
+figure.imageMenu:hover .title:after,
+figure.imageMenu hover .title:after,
+figure.imageMenu:hover .title div:before,
+figure.imageMenu hover .title div:before,
+figure.imageMenu:hover .title div:after,
+figure.imageMenu hover .title div:after {
+  transform: translate(0, 0);
+}
+
+/* 선나오는 속도 */
+figure.imageMenu:hover .title:before,
+figure.imageMenu hover .title:before,
+figure.imageMenu:hover .title:after,
+figure.imageMenu hover .title:after {
+  transition-delay: 0.15s;
+}
+
+figure.imageMenu:hover figcaption,
+figure.imageMenu hover figcaption {
+  opacity: 1;
+  transition-delay: 0.2s;
+}
+
